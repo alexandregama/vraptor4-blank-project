@@ -1,4 +1,4 @@
-package com.company.project.home;
+package com.procurandoape.user;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
