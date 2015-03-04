@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface Users {
 
-	List<User> bestThreeUsersForHome();
+	List<User> getBestThreeUsersForHome();
 
 }

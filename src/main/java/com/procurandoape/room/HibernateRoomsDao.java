@@ -1,4 +1,4 @@
-package com.procurandoape.user;
+package com.procurandoape.room;
 
 import java.util.List;
 
@@ -7,13 +7,13 @@ import javax.persistence.TypedQuery;
 
 import com.procurandoape.infra.JPAUtil;
 
-public class HibernateUsersDao implements Users {
+public class HibernateRoomsDao implements Rooms {
 
 	@Override
-	public List<User> getBestThreeUsersForHome() {
+	public List<Room> getRoomsForHome() {
 		EntityManager manager = new JPAUtil().getEntityManager();
-		TypedQuery<User> query = manager.createQuery("select u from User u", User.class);
-		query.setMaxResults(4);
+		TypedQuery<Room> query = manager.createQuery("select r from Room r", Room.class);
+		query.setMaxResults(3);
 
 		return query.getResultList();
 	}
