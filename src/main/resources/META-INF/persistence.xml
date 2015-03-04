@@ -1,11 +1,11 @@
 <persistence version="1.0"
 	xmlns="http://java.sun.com/xml/ns/persistence">
-	<persistence-unit name="roomate" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="procurandoape" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1/roomate" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1/procurandoape" />
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="" />
 
