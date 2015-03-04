@@ -12,7 +12,7 @@
 	<c:forEach items="${roomsForHome}" var="room">
 		<img src="${room.user.photo}" width="50px" height="50px"><br/>
 		
-		${room.price} - ${room.priceType} <br/>
+		${room.formattedPrice} - ${room.priceType.value} <br/>
 		${room.shortDescription} <br/>
 		${room.city.name} - ${room.city.state.abbreviation}
 		<br/><br/>

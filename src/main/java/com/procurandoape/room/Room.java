@@ -2,6 +2,8 @@ package com.procurandoape.room;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -62,8 +64,17 @@ public class Room implements Serializable {
 				+ city + "]";
 	}
 
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
 	public BigDecimal getPrice() {
 		return price;
+	}
+
+	public String getFormattedPrice() {
+		NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		return formatter.format(price);
 	}
 
 	public Long getId() {
