@@ -56,6 +56,9 @@ public class Room implements Serializable {
 	@JoinColumn(name = "city_id")
 	private City city;
 
+	@Column(name = "main_picture")
+	private String mainPicture;
+
 	@Override
 	public String toString() {
 		return "Room [id=" + id + ", user=" + user + ", shortDescription="
@@ -99,6 +102,10 @@ public class Room implements Serializable {
 
 	public City getCity() {
 		return city;
+	}
+
+	public String getMainPicture() {
+		return "https://s3.amazonaws.com/user-picture/" + this.mainPicture;
 	}
 
 }

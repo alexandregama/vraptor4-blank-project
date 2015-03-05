@@ -4,7 +4,7 @@ import com.procurandoape.util.I18nMessage;
 
 public enum PriceType {
 
-	WEEK(I18nMessage.getKey("pricetype.week")), MONTH(I18nMessage.getKey("pricetype.month"));
+	WEEK("pricetype.week"), MONTH("pricetype.month");
 
 	private String value;
 
@@ -13,7 +13,7 @@ public enum PriceType {
 	}
 
 	public String getValue() {
-		return value;
+		return I18nMessage.getKey(value);
 	}
 
 }

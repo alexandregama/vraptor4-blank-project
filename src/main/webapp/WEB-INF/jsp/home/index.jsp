@@ -10,11 +10,12 @@
 <body>
 	<h2>Veja algumas pessoas que tem espaço disponível</h2>
 	<c:forEach items="${roomsForHome}" var="room">
-		<img src="${room.user.photo}" width="50px" height="50px"><br/>
+		<img src="${room.mainPicture}" width="200px" height="150px"><br/>
 		
 		${room.formattedPrice} - ${room.priceType.value} <br/>
 		${room.shortDescription} <br/>
-		${room.city.name} - ${room.city.state.abbreviation}
+		${room.city.name} - ${room.city.state.abbreviation} <br/>
+		<img src="${room.user.photo}" width="50px" height="50px"><br/>
 		<br/><br/>
 	</c:forEach>
 	
