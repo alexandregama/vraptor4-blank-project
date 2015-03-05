@@ -21,6 +21,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.procurandoape.user.City;
 import com.procurandoape.user.User;
+import com.procurandoape.util.RoomConfig;
 
 @Entity
 @Table(name = "room")
@@ -105,7 +106,7 @@ public class Room implements Serializable {
 	}
 
 	public String getMainPicture() {
-		return "https://s3.amazonaws.com/user-picture/" + this.mainPicture;
+		return RoomConfig.getProperty("amazon.s3.picutures.path") + this.mainPicture;
 	}
 
 }

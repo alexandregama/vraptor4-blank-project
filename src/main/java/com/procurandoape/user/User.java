@@ -18,6 +18,8 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 
+import com.procurandoape.util.RoomConfig;
+
 @Entity
 @Table(name = "user")
 public class User implements Serializable {
@@ -73,7 +75,7 @@ public class User implements Serializable {
 	}
 
 	public String getPhoto() {
-		return "https://s3.amazonaws.com/user-picture/" + photo;
+		return RoomConfig.getProperty("amazon.s3.picutures.path") + this.photo;
 	}
 
 }
