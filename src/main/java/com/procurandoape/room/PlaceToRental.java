@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,8 +25,8 @@ import com.procurandoape.user.User;
 import com.procurandoape.util.RoomConfig;
 
 @Entity
-@Table(name = "room")
-public class Room implements Serializable {
+@Table(name = "place_to_rental")
+public class PlaceToRental implements Serializable {
 
 	private static final long serialVersionUID = -771024054969107906L;
 
@@ -33,7 +34,7 @@ public class Room implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
@@ -57,6 +58,9 @@ public class Room implements Serializable {
 	@JoinColumn(name = "city_id")
 	private City city;
 
+	@Column(name = "neighborhood", length = 100)
+	private String neighborhood;
+
 	@Column(name = "main_picture")
 	private String mainPicture;
 
@@ -79,6 +83,11 @@ public class Room implements Serializable {
 	public String getFormattedPrice() {
 		NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 		return formatter.format(price);
+	}
+
+	public String getFormattedPriceWithoutSymbol() {
+		NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		return formatter.format(price).replaceAll("R$", "");
 	}
 
 	public Long getId() {
@@ -109,4 +118,7 @@ public class Room implements Serializable {
 		return RoomConfig.getProperty("amazon.s3.picutures.path") + this.mainPicture;
 	}
 
+	public String getNeighborhood() {
+		return neighborhood;
+	}
 }

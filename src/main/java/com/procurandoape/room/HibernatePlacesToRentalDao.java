@@ -7,12 +7,12 @@ import javax.persistence.TypedQuery;
 
 import com.procurandoape.infra.JPAUtil;
 
-public class HibernateRoomsDao implements Rooms {
+public class HibernatePlacesToRentalDao implements PlacesToRental {
 
 	@Override
-	public List<Room> getRoomsForHome() {
+	public List<PlaceToRental> getPlacesToRentalForHome() {
 		EntityManager manager = new JPAUtil().getEntityManager();
-		TypedQuery<Room> query = manager.createQuery("select r from Room r", Room.class);
+		TypedQuery<PlaceToRental> query = manager.createQuery("select p from PlaceToRental p", PlaceToRental.class);
 		query.setMaxResults(3);
 
 		return query.getResultList();

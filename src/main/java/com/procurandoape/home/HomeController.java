@@ -6,7 +6,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Result;
 
-import com.procurandoape.room.Rooms;
+import com.procurandoape.room.PlacesToRental;
 import com.procurandoape.user.Users;
 
 @Controller
@@ -16,7 +16,7 @@ public class HomeController {
 	private Users users;
 
 	@Inject
-	private Rooms rooms;
+	private PlacesToRental rooms;
 
 	@Inject
 	private Result result;
@@ -24,7 +24,7 @@ public class HomeController {
 	@Get("/")
 	public void index() {
 		result.include("usersForHome", users.getBestThreeUsersForHome());
-		result.include("roomsForHome", rooms.getRoomsForHome());
+		result.include("placesToRental", rooms.getPlacesToRentalForHome());
 	}
 
 }

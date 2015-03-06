@@ -2,13 +2,17 @@ package com.procurandoape.user;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,6 +22,9 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 
+import com.procurandoape.converters.BooleanToStringConverterJPA;
+import com.procurandoape.place.PlaceToLive;
+import com.procurandoape.room.PlaceToRental;
 import com.procurandoape.util.RoomConfig;
 
 @Entity
@@ -50,6 +57,16 @@ public class User implements Serializable {
 	@JoinColumn(name = "city_id")
 	private City city;
 
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	@Column(name = "smoker", columnDefinition="char(1)")
+	private Boolean smoker;
+
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	private List<PlaceToLive> placesToLive;
+
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	private List<PlaceToRental> placesToRental;
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -76,6 +93,22 @@ public class User implements Serializable {
 
 	public String getPhoto() {
 		return RoomConfig.getProperty("amazon.s3.picutures.path") + this.photo;
+	}
+
+	public String getFullName() {
+		return this.firstName + " " + this.lastName;
+	}
+
+	public Boolean isSmoker() {
+		return smoker;
+	}
+
+	public void setSmoker(Boolean smoker) {
+		this.smoker = smoker;
+	}
+
+	public PlaceToLive getPlaceToLive() {
+		return this.placesToLive.get(0);
 	}
 
 }
