@@ -16,12 +16,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 
 import com.procurandoape.converters.BooleanToStringConverterJPA;
+import com.procurandoape.converters.GenderEnumToGenderJPAConverter;
+import com.procurandoape.converters.PlaceTypeEnumToPlaceTypeJpaConverter;
 import com.procurandoape.place.PlaceToLive;
 import com.procurandoape.room.PlaceToRental;
 import com.procurandoape.util.RoomConfig;
@@ -44,13 +48,27 @@ public class User implements Serializable {
 	@NotBlank
 	private String lastName;
 
+	@Column(name = "email", length = 100, nullable = false)
+	@Email
+	private String email;
+
+	@Column(name = "password", length = 10, nullable = false)
+	@NotBlank
+	private String password;
+
+	@Transient
+	private String passwordConfirmation;
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "birthday")
-	@NotBlank
 	private Calendar birthday;
 
 	@Column(name = "photo", length = 100)
 	private String photo;
+
+	@Column(name = "gender", columnDefinition = "char(1)")
+	@Convert(converter = GenderEnumToGenderJPAConverter.class)
+	private Gender gender;
 
 	@OneToOne
 	@JoinColumn(name = "city_id")
@@ -66,24 +84,32 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user")
 	private List<PlaceToRental> placesToRental;
 
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	@Column(name = "accepts_perfil_suggestion", columnDefinition = "char(1)")
+	private Boolean acceptsPerfilSuggestion;
+
+	@Convert(converter = PlaceTypeEnumToPlaceTypeJpaConverter.class)
+	@Column(name = "place_type", columnDefinition = "char(1)")
+	private PlaceType placeType;
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", password=" + password
+				+ ", passwordConfirmation=" + passwordConfirmation
+				+ ", birthday=" + birthday + ", photo=" + photo + ", gender="
+				+ gender + ", city=" + city + ", smoker=" + smoker
+				+ ", placesToLive=" + placesToLive + ", placesToRental="
+				+ placesToRental + ", acceptsPerfilSuggestion="
+				+ acceptsPerfilSuggestion + "]";
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public City getCity() {
-		return city;
-	}
-
-	public void setBirthday(Calendar birthday) {
-		this.birthday = birthday;
-	}
-
 	public int getAge() {
-		DateTime birthdayDate = new DateTime(this.birthday);
+		DateTime birthdayDate = new DateTime(this.getBirthday());
 		DateTime today = new DateTime();
 		Years yearsBetween = Years.yearsBetween(birthdayDate, today);
 
@@ -95,7 +121,7 @@ public class User implements Serializable {
 	}
 
 	public String getFullName() {
-		return this.firstName + " " + this.lastName;
+		return this.getFirstName() + " " + this.getLastName();
 	}
 
 	public Boolean isSmoker() {
@@ -108,6 +134,74 @@ public class User implements Serializable {
 
 	public PlaceToLive getPlaceToLive() {
 		return this.placesToLive.get(0);
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Calendar getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Calendar birthday) {
+		this.birthday = birthday;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public Boolean isAcceptsPerfilSuggestion() {
+		return acceptsPerfilSuggestion;
+	}
+
+	public void setAcceptsPerfilSuggestion(Boolean acceptsPerfilSuggestion) {
+		this.acceptsPerfilSuggestion = acceptsPerfilSuggestion;
 	}
 
 }

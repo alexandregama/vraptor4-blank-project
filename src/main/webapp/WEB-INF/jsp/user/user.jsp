@@ -1,10 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Cadastre-se para dividir quarto, apartamento, casa, etc...</title>
-	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="${urlAmazonPresenter.s3AssetsUrl}/site-html/css/main.css" />
   <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 </head>
 <body>
@@ -49,57 +52,64 @@
     <!-- Formulário de Cadastro de Usuário -->
     <section id="formulario">
       <h1>Crie seu perfil de forma rápida e fácil :)</h1>
+      <c:forEach items="${errors}" var="error">
+      	${error}
+      </c:forEach>
       <a href="" class="icon-facebook2 bt-facebook">Cadastre-se usando o Facebook</a>
       <a href="" class="icon-google-plus2 bt-google">Cadastre-se usando o Facebook</a>
       <span class="ou"><strong>OU</strong></span>
+      
       <div class="bloco-cad colunas">
-        <select name="tipo-busca">
-          <option value="0">Tipo do anúncio (Você tem ou precisa de um espaço?)</option>
-          <option value="tenho">Tenho uma vaga</option>
-          <option value="preciso">Preciso de uma vaga</option>
-        </select>
-        <div class="rs-6colunas primeira"><input type="text" name="nome" placeholder="Nome"/></div>
-        <div class="rs-6colunas ultima"><input type="text" name="sobrenome" placeholder="Sobrenome"/></div>
-        <input type="text" name="email" placeholder="E-mail"/>
-        <div class="rs-6colunas primeira"><input type="text" name="senha" placeholder="Senha"/></div>
-        <div class="rs-6colunas ultima"><input type="text" name="confirmar-senha" placeholder="Confirmar senha"/></div>
-        <div class="rs-6colunas primeira">
-          <select name="sexo">
-            <option value="0">Selecione seu sexo</option>
-            <option value="masculino">Masculino</option>
-            <option value="feminino">Feminino</option>
-            <option value="outro">Outro</option>
-          </select>
-        </div>
-        <div class="rs-6colunas ultima"><input type="text" name="nascimento" placeholder="Nascimento (dd/mm/aaa)"/></div>
-        <span class="legenda">Escolha o estado e cidade onde deseja morar</span>
-        <div class="rs-6colunas primeira">
-          <select name="estado">
-            <option value="0">Estado</option>
-            <option value="masculino">SP</option>
-            <option value="feminino">BA</option>
-            <option value="outro">Minas</option>
-          </select>
-        </div>
-        <div class="rs-6colunas ultima">
-          <select name="cidade">
-            <option value="0">Cidade</option>
-            <option value="masculino">São Paulo</option>
-            <option value="feminino">Americana</option>
-            <option value="outro">Campinas</option>
-          </select>
-        </div>
-        <div class="rs-12colunas legenda">
-          <input type="checkbox" name="aceito-sugestoes-perfis" checked/>
-          Aceito sugestões de perfis que desejam procurar um lugar junto comigo
-        </div>
-        <div class="rs-6colunas primeira legenda rs-2linhas">
-          <input type="checkbox" name="aceito-termos" checked/>
-          Ao se cadastrar você concorda com os <a href="/termos-de-uso">Termos de Uso</a> e nossa <a href="/politica-privacidade">Política de Privacidade</a>.
-        </div>
-        <div class="rs-6colunas ultima">
-          <a href="#" class="rs-botao laranja full">Finalizar Cadastro</a>
-        </div>
+      	<form action="user" method="post">
+	        <select name="tipo-busca">
+	          <option value="0">Tipo do anúncio (Você tem ou precisa de um espaço?)</option>
+	          <option value="tenho">Tenho uma vaga</option>
+	          <option value="preciso">Preciso de uma vaga</option>
+	        </select>
+	        <div class="rs-6colunas primeira"><input type="text" name="user.firstName" placeholder="Nome"/></div>
+	        <div class="rs-6colunas ultima"><input type="text" name="user.lastName" placeholder="Sobrenome"/></div>
+	        <input type="text" name="user.email" placeholder="E-mail"/>
+	        <div class="rs-6colunas primeira"><input type="text" name="user.password" placeholder="Senha"/></div>
+	        <div class="rs-6colunas ultima"><input type="text" name="user.passwordConfirmation" placeholder="Confirmar senha"/></div>
+	        <div class="rs-6colunas primeira">
+	          <select name="user.gender">
+	            <option value="">Selecione seu sexo</option>
+	            <option value="MALE">Masculino</option>
+	            <option value="FEMALE">Feminino</option>
+	            <option value="OTHER">Outro</option>
+	          </select>
+	        </div>
+	        <div class="rs-6colunas ultima"><input type="text" name="user.birthday" placeholder="Nascimento (dd/mm/aaa)"/></div>
+	        <span class="legenda">Escolha o estado e cidade onde deseja morar</span>
+	        <div class="rs-6colunas primeira">
+	          <select name="estado">
+	            <option value="0">Estado</option>
+	            <option value="masculino">SP</option>
+	            <option value="feminino">BA</option>
+	            <option value="outro">Minas</option>
+	          </select>
+	        </div>
+	        <div class="rs-6colunas ultima">
+	          <select name="cidade">
+	            <option value="0">Cidade</option>
+	            <option value="masculino">São Paulo</option>
+	            <option value="feminino">Americana</option>
+	            <option value="outro">Campinas</option>
+	          </select>
+	        </div>
+	        <div class="rs-12colunas legenda">
+	          <input type="checkbox" name="aceito-sugestoes-perfis" checked/>
+	          Aceito sugestões de perfis que desejam procurar um lugar junto comigo
+	        </div>
+	        <div class="rs-6colunas primeira legenda rs-2linhas">
+	          <input type="checkbox" name="user.acceptsPerfilSuggestion" checked/>
+	          Ao se cadastrar você concorda com os <a href="/termos-de-uso">Termos de Uso</a> e nossa <a href="/politica-privacidade">Política de Privacidade</a>.
+	        </div>
+	        
+	        <div class="rs-6colunas ultima">
+	          <input class="rs-botao laranja full" type="submit" value="Finalizar Cadastro"></input>
+	        </div>
+	     </form>
       </div>
       
     </section>
@@ -152,8 +162,8 @@
 
 
   <!-- Scripts -->
-  <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-  <script src="js/main.js" type="text/javascript"></script>
+  <script src="${urlAmazonPresenter.s3AssetsUrl}/js/site-html/jquery-1.11.2.min.js" type="text/javascript"></script>
+  <script src="${urlAmazonPresenter.s3AssetsUrl}/js/site-html/main.js" type="text/javascript"></script>
   <!-- Fim Scripts -->
 
 </body>

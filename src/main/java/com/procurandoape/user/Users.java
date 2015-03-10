@@ -6,4 +6,6 @@ public interface Users {
 
 	List<User> getBestThreeUsersForHome();
 
+	void save(User user);
+
 }
