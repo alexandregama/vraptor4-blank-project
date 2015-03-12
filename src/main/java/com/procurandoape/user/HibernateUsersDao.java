@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+
+import com.google.common.base.Optional;
 
 public class HibernateUsersDao implements Users {
 
@@ -31,6 +34,20 @@ public class HibernateUsersDao implements Users {
 		manager.getTransaction().begin();
 		manager.persist(user);
 		manager.getTransaction().commit();
+	}
+
+	@Override
+	public Optional<User> findBy(User user) {
+		String sql = "select u from User u where u.email = :email and u.password = :password";
+		TypedQuery<User> query = manager.createQuery(sql, User.class);
+		query.setParameter("email", user.getEmail());
+		query.setParameter("password", user.getPassword());
+		try {
+			User userFound = query.getSingleResult();
+			return Optional.of(userFound);
+		} catch (NoResultException e) {
+			return Optional.absent();
+		}
 	}
 
 }
