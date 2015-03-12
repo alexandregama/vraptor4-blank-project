@@ -37,7 +37,7 @@ public class UserController {
 	UserController() {
 	}
 
-	@Get("/user")
+	@Get("/signup")
 	public void user() {
 		result.include("states", cities.getAllStates());
 	}

@@ -254,4 +254,8 @@ public class User implements Serializable {
 		}
 		return new SimpleDateFormat("dd/MM/yyyy").format(this.birthday.getTime());
 	}
+
+	public boolean hasEmptyCredentialsSignin() {
+		return this.email == null || this.email.isEmpty() || this.password == null || this.password.isEmpty();
+	}
 }
