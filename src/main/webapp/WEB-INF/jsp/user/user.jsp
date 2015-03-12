@@ -66,8 +66,8 @@
       	<form action="user" method="post">
 	        <select name="user.placeType">
 	          <option value="">Tipo do anúncio (Você tem ou precisa de um espaço?)</option>
-	          <option value="HAS_PLACE">Tenho uma vaga</option>
-	          <option value="NEEDS_PALCE">Preciso de uma vaga</option>
+	          <option value="HAS_PLACE" <c:if test="${user.hasPlaceSelected}">selected</c:if> >Tenho uma vaga</option>
+	          <option value="NEEDS_PLACE" <c:if test="${user.needsPlaceSelected}">selected</c:if>>Preciso de uma vaga</option>
 	        </select>
 	        <div class="rs-6colunas primeira"><input type="text" name="user.firstName" placeholder="Nome" value="${user.firstName}"/></div>
 	        <div class="rs-6colunas ultima"><input type="text" name="user.lastName" placeholder="Sobrenome" value="${user.lastName}"/></div>

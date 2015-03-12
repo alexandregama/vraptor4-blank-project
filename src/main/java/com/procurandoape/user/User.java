@@ -238,4 +238,12 @@ public class User implements Serializable {
 		return this.gender != null && this.gender.equals(Gender.OTHER);
 	}
 
+	public boolean isHasPlaceSelected() {
+		return this.placeType != null && this.placeType.equals(PlaceType.HAS_PLACE);
+	}
+
+	public boolean isNeedsPlaceSelected() {
+		return this.placeType != null && this.placeType.equals(PlaceType.NEEDS_PLACE);
+	}
+
 }

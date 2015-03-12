@@ -13,7 +13,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = GenderValidator.class)
 public @interface ValidGender {
 
-	String message() default "user.gender.empty";
+	String message() default "{user.gender.empty}";
 
 	Class<?>[] groups() default {};
 
