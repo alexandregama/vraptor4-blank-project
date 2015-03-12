@@ -50,4 +50,17 @@ public class HibernateUsersDao implements Users {
 		}
 	}
 
+	@Override
+	public boolean emailAlreadyExists(User user) {
+		String sql = "select u from User u where u.email = :email";
+		TypedQuery<User> query = manager.createQuery(sql, User.class);
+		query.setParameter("email", user.getEmail());
+
+		try {
+			return query.getSingleResult() != null;
+		} catch (NoResultException e) {
+			return false;
+		}
+	}
+
 }

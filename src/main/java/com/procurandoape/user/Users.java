@@ -12,4 +12,6 @@ public interface Users {
 
 	Optional<User> findBy(User user);
 
+	boolean emailAlreadyExists(User user);
+
 }
