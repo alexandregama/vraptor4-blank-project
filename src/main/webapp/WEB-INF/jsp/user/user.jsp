@@ -69,17 +69,18 @@
 	          <option value="HAS_PLACE">Tenho uma vaga</option>
 	          <option value="NEEDS_PALCE">Preciso de uma vaga</option>
 	        </select>
-	        <div class="rs-6colunas primeira"><input type="text" name="user.firstName" placeholder="Nome"/></div>
-	        <div class="rs-6colunas ultima"><input type="text" name="user.lastName" placeholder="Sobrenome"/></div>
-	        <input type="text" name="user.email" placeholder="E-mail"/>
-	        <div class="rs-6colunas primeira"><input type="text" name="user.password" placeholder="Senha"/></div>
-	        <div class="rs-6colunas ultima"><input type="text" name="user.passwordConfirmation" placeholder="Confirmar senha"/></div>
+	        <div class="rs-6colunas primeira"><input type="text" name="user.firstName" placeholder="Nome" value="${user.firstName}"/></div>
+	        <div class="rs-6colunas ultima"><input type="text" name="user.lastName" placeholder="Sobrenome" value="${user.lastName}"/></div>
+	        <input type="text" name="user.email" placeholder="E-mail" value="${user.email}"/>
+	        <div class="rs-6colunas primeira"><input type="password" name="user.password" placeholder="Senha"/></div>
+	        <div class="rs-6colunas ultima"><input type="password" name="user.passwordConfirmation" placeholder="Confirmar senha"/></div>
 	        <div class="rs-6colunas primeira">
-	          <select name="user.gender">
+	        ${user.gender}
+	          <select name="user.gender" >
 	            <option value="">Selecione seu sexo</option>
-	            <option value="MALE">Masculino</option>
-	            <option value="FEMALE">Feminino</option>
-	            <option value="OTHER">Outro</option>
+	            <option value="MALE" <c:if test="${user.maleSelected}">selected</c:if>>Masculino</option>
+	            <option value="FEMALE" <c:if test="${user.femaleSelected}">selected</c:if>>Feminino</option>
+	            <option value="OTHER" <c:if test="${user.otherSelected}">selected</c:if>>Outro</option>
 	          </select>
 	        </div>
 	        <div class="rs-6colunas ultima"><input type="text" name="user.birthday" placeholder="Nascimento (dd/mm/aaa)"/></div>

@@ -6,6 +6,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.validator.I18nMessage;
 import br.com.caelum.vraptor.validator.Validator;
 
 import com.procurandoape.home.Cities;
@@ -42,7 +43,11 @@ public class UserController {
 	@Post("/user")
 	public void create(User user) {
 		validator.validate(user);
+		validator.ensure(user.hasValidPasswordConfirmation(), new I18nMessage("password", "user.password.confirmation"));
 		validator.onErrorRedirectTo(UserController.class).user();
+		if (validator.hasErrors()) {
+			result.include("user", user);
+		}
 
 		users.save(user);
 		result.redirectTo(HomeController.class).index();

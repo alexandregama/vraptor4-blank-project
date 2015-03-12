@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -56,6 +57,7 @@ public class User implements Serializable {
 
 	@Column(name = "password", length = 10, nullable = false)
 	@NotBlank(message = "{user.password.empty}")
+	@Size(min = 6, max = 10, message = "{user.password.length}")
 	private String password;
 
 	@Transient
@@ -71,7 +73,7 @@ public class User implements Serializable {
 
 	@Convert(converter = GenderEnumToGenderJPAConverter.class)
 	@Column(name = "gender", columnDefinition = "char(1)")
-	@NotBlank(message = "{user.gender.empty}")
+	@ValidGender
 	private Gender gender;
 
 	@OneToOne
@@ -217,6 +219,23 @@ public class User implements Serializable {
 
 	public void setPlaceType(PlaceType placeType) {
 		this.placeType = placeType;
+	}
+
+	public boolean hasValidPasswordConfirmation() {
+		return this.password != null && this.passwordConfirmation != null
+				&& this.password.equals(this.passwordConfirmation);
+	}
+
+	public boolean isMaleSelected() {
+		return this.gender != null && this.gender.equals(Gender.MALE);
+	}
+
+	public boolean isFemaleSelected() {
+		return this.gender != null && this.gender.equals(Gender.FEMALE);
+	}
+
+	public boolean isOtherSelected() {
+		return this.gender != null && this.gender.equals(Gender.OTHER);
 	}
 
 }
