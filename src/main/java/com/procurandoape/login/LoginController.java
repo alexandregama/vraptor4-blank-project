@@ -23,11 +23,14 @@ public class LoginController {
 
 	private Users users;
 
+	private UserSession userSession;
+
 	@Inject
-	public LoginController(Validator validator, Result result, Users users) {
+	public LoginController(Validator validator, Result result, Users users, UserSession userSession) {
 		this.validator = validator;
 		this.result = result;
 		this.users = users;
+		this.userSession = userSession;
 	}
 
 	@Deprecated //CDI Eyes only
@@ -51,6 +54,7 @@ public class LoginController {
 
 		Optional<User> userFound = users.findBy(user);
 		if (userFound.isPresent()) {
+			userSession.add(userFound.get());
 			result.redirectTo(HomeController.class).index();
 		} else {
 			validator.add(new I18nMessage("signin.invalid", "user.signin.invalid.credentials"));

@@ -30,7 +30,7 @@
           <li class="profile clearfix">              
               <a href="perfil/ronerysouza">
                 <img src="<c:url value='images/perfil-usuario.jpg' />" alt="Ronery Souza Procurando Apê">
-                <span>Ronery Souza</span>
+                <span>Olá ${userSession.user.firstName}</span>
               </a>              
               <ul class="submenu-profile">
                 <li class="sm"><a href="/login">Meus Alertas (3)</a></li>
