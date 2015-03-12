@@ -8,6 +8,6 @@ public interface Cities {
 
 	List<State> getAllStates();
 
-	List<City> getByState(String state);
+	List<City> getByStateAbbreviation(String state);
 
 }

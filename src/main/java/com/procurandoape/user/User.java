@@ -1,6 +1,7 @@
 package com.procurandoape.user;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -65,7 +67,7 @@ public class User implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "birthday")
-	@NotBlank(message = "{user.birthday.empty}")
+	@NotNull(message = "{user.birthday.empty}")
 	private Calendar birthday;
 
 	@Column(name = "photo", length = 100)
@@ -246,4 +248,10 @@ public class User implements Serializable {
 		return this.placeType != null && this.placeType.equals(PlaceType.NEEDS_PLACE);
 	}
 
+	public String getFormattedBirthday() {
+		if (this.birthday == null) {
+			return null;
+		}
+		return new SimpleDateFormat("dd/MM/yyyy").format(this.birthday.getTime());
+	}
 }

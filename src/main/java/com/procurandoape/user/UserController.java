@@ -1,5 +1,7 @@
 package com.procurandoape.user;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
@@ -44,10 +46,12 @@ public class UserController {
 	public void create(User user) {
 		validator.validate(user);
 		validator.ensure(user.hasValidPasswordConfirmation(), new I18nMessage("password", "user.password.confirmation"));
-		validator.onErrorRedirectTo(UserController.class).user();
 		if (validator.hasErrors()) {
+			List<City> citiesFromState = cities.getByStateAbbreviation(user.getCity().getStateAbbreviation());
 			result.include("user", user);
+			result.include("cities", citiesFromState);
 		}
+		validator.onErrorRedirectTo(UserController.class).user();
 
 		users.save(user);
 		result.redirectTo(HomeController.class).index();

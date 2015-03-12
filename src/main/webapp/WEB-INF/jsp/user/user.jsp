@@ -75,7 +75,6 @@
 	        <div class="rs-6colunas primeira"><input type="password" name="user.password" placeholder="Senha"/></div>
 	        <div class="rs-6colunas ultima"><input type="password" name="user.passwordConfirmation" placeholder="Confirmar senha"/></div>
 	        <div class="rs-6colunas primeira">
-	        ${user.gender}
 	          <select name="user.gender" >
 	            <option value="">Selecione seu sexo</option>
 	            <option value="MALE" <c:if test="${user.maleSelected}">selected</c:if>>Masculino</option>
@@ -83,19 +82,22 @@
 	            <option value="OTHER" <c:if test="${user.otherSelected}">selected</c:if>>Outro</option>
 	          </select>
 	        </div>
-	        <div class="rs-6colunas ultima"><input type="text" name="user.birthday" placeholder="Nascimento (dd/mm/aaa)"/></div>
+	        <div class="rs-6colunas ultima"><input type="text" name="user.birthday" placeholder="Nascimento (dd/mm/aaa)" value="${user.formattedBirthday}"/></div>
 	        <span class="legenda">Escolha o estado e cidade onde deseja morar</span>
 	        <div class="rs-6colunas primeira">
-	          <select name="estado" id="estado">
+	          <select name="user.city.stateAbbreviation" id="estado">
 		        <option value="">Estado</option>
 	          	<c:forEach items="${states}" var="state">
-		            <option value="${state.abbreviation}">${state.name}</option>
+		            <option value="${state.abbreviation}" <c:if test="${state.abbreviation == user.city.stateAbbreviation}">selected</c:if> >${state.name}</option>
 	          	</c:forEach>
 	          </select>
 	        </div>
 	        <div class="rs-6colunas ultima">
 	          <select name="user.city.id" id="cidade">
 	            <option value="">Cidade</option>
+	          	<c:forEach items="${cities}" var="city">
+	          		<option value="${city.id}" <c:if test="${user.city.id == city.id}">selected</c:if> >${city.name}</option>
+	          	</c:forEach>
 	          </select>
 	        </div>
 	        <div class="rs-12colunas legenda">

@@ -32,7 +32,7 @@ public class CityController {
 
 	@Get("/city/{state}")
 	public void getCity(String state) {
-		List<City> citiesFromState = cities.getByState(state);
+		List<City> citiesFromState = cities.getByStateAbbreviation(state);
 		result.use(json()).withoutRoot().from(citiesFromState).serialize();;
 	}
 

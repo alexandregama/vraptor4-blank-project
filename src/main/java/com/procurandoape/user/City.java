@@ -71,4 +71,8 @@ public class City implements Serializable {
 		return id;
 	}
 
+	public void setStateAbbreviation(String stateAbbreviation) {
+		this.stateAbbreviation = stateAbbreviation;
+	}
+
 }
