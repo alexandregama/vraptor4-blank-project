@@ -41,6 +41,12 @@ public class LoginController {
 	public void show() {
 	}
 
+	@Get("/logout")
+	public void logout() {
+		userSession.logout();
+		result.redirectTo(HomeController.class).index();
+	}
+
 	@Get("/retrieve-password")
 	public void retrievePassword() {
 	}

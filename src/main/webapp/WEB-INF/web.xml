@@ -7,6 +7,11 @@
 	<display-name>casadocodigo-jpa-eficaz</display-name>
 
 	<context-param>
+	    <param-name>br.com.caelum.vraptor.encoding</param-name>
+	    <param-value>UTF-8</param-value>
+	</context-param>
+
+	<context-param>
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
 		<param-value>messages</param-value>
 	</context-param>
@@ -14,11 +19,6 @@
 	<context-param>
 	    <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
 	    <param-value>pt_BR</param-value>
-	</context-param>
-
-	<context-param>
-	    <param-name>br.com.caelum.vraptor.encoding</param-name>
-	    <param-value>UTF-8</param-value>
 	</context-param>
 
 	<listener>

@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge; text/html; charset=UTF-8">
 	<title>Cadastre-se para dividir quarto, apartamento, casa, etc...</title>
 	<link rel="stylesheet" href="${urlAmazonPresenter.s3AssetsUrl}/site-html/css/main.css" />
   	<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">

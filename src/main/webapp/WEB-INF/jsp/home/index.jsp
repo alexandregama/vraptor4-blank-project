@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title></title>
 	<link rel="stylesheet" href="${urlAmazonPresenter.s3AssetsUrl}/site-html/css/main.css" />
@@ -30,14 +30,14 @@
           <li class="profile clearfix">              
               <a href="perfil/ronerysouza">
                 <img src="<c:url value='images/perfil-usuario.jpg' />" alt="Ronery Souza Procurando Apê">
-                <span>Olá ${userSession.user.firstName}</span>
+                <span>${userSession.user.firstName}</span>
               </a>              
               <ul class="submenu-profile">
                 <li class="sm"><a href="/login">Meus Alertas (3)</a></li>
                 <li class="sm"><a href="/login">Minhas Mensagens (1)</a></li>
                 <li><a href="meu-painel">Painel de Controle</a></li>
                 <li><a href="meus-anuncios">Meus Anúncios</a></li>
-                <li><a href="sair">Sair</a></li>
+                <li><a href="logout">Sair</a></li>
               </ul>
           </li>
           <li id="configPerfil" class="icon-cross icon-cog hm"></li>
@@ -179,7 +179,7 @@ Você também pode fazer a busca do seu jeito.</p>
 
   <!-- Scripts -->
   <script src="${urlAmazonPresenter.s3AssetsUrl}/site-html/js/jquery-1.11.2.min.js" type="text/javascript"></script>
-  <script src="${urlAmazonPresenter.s3AssetsUrl}s/site-html/js/main.js" type="text/javascript"></script>
+  <script src="${urlAmazonPresenter.s3AssetsUrl}/site-html/js/main.js" type="text/javascript"></script>
   <!-- Fim Scripts -->
 
 </body>
