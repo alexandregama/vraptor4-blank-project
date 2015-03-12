@@ -100,9 +100,7 @@ public class User implements Serializable {
 				+ ", passwordConfirmation=" + passwordConfirmation
 				+ ", birthday=" + new SimpleDateFormat("dd/MM/yyyy").format(birthday.getTime()) + ", photo=" + photo + ", gender="
 				+ gender + ", city=" + city + ", smoker=" + smoker
-				+ ", placesToLive=" + placesToLive + ", placesToRental="
-				+ placesToRental + ", acceptsPerfilSuggestion="
-				+ acceptsPerfilSuggestion + ", placeType=" + placeType + "]";
+				+ ", acceptsPerfilSuggestion=" + acceptsPerfilSuggestion + ", placeType=" + placeType + "]";
 	}
 
 	public String getFirstName() {
@@ -134,7 +132,10 @@ public class User implements Serializable {
 	}
 
 	public PlaceToLive getPlaceToLive() {
-		return this.placesToLive.get(0);
+		if (!this.placesToLive.isEmpty()) {
+			return this.placesToLive.get(0);
+		}
+		return null;
 	}
 
 	public String getEmail() {

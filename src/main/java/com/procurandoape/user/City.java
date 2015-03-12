@@ -31,7 +31,7 @@ public class City implements Serializable {
 
 	@Column(name = "state_abbreviation", nullable = false, columnDefinition = "char(2)")
 	@NotBlank
-	private String state_abbreviation;
+	private String stateAbbreviation;
 
 	@Column(name = "district", length = 100, nullable = false)
 	private String district;
@@ -44,8 +44,12 @@ public class City implements Serializable {
 		return state;
 	}
 
-	public String getState_abbreviation() {
-		return state_abbreviation;
+	public String getStateAbbreviation() {
+		return stateAbbreviation;
+	}
+
+	public String getDistrict() {
+		return district;
 	}
 
 }

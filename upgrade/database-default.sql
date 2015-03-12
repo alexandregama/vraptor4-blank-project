@@ -55,7 +55,7 @@ insert into place_to_live (city_id, user_id)
 values ((select id from city where name = "Rio de Janeiro" limit 1), (select id from user where email = "carla@gmail.com"));
 
 insert into place_to_live (city_id, user_id)
-values ((select id from city where name = "São Paulo" limit 1), (select id from user where email = "ronery@gmail.com"));
+values ((select id from city where name = "São Paulo" limit 1), (select id from user where email = "ronery.souza@gmail.com"));
 
 insert into place_to_live (city_id, user_id)
 values ((select id from city where name = "São Paulo" limit 1), (select id from user where email = "nicole@gmail.com"));

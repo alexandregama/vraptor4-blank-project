@@ -85,19 +85,16 @@
 	        <div class="rs-6colunas ultima"><input type="text" name="user.birthday" placeholder="Nascimento (dd/mm/aaa)"/></div>
 	        <span class="legenda">Escolha o estado e cidade onde deseja morar</span>
 	        <div class="rs-6colunas primeira">
-	          <select name="estado">
-	            <option value="0">Estado</option>
-	            <option value="masculino">SP</option>
-	            <option value="feminino">BA</option>
-	            <option value="outro">Minas</option>
+	          <select name="estado" id="estado">
+		        <option value="">Estado</option>
+	          	<c:forEach items="${states}" var="state">
+		            <option value="${state.abbreviation}">${state.name}</option>
+	          	</c:forEach>
 	          </select>
 	        </div>
 	        <div class="rs-6colunas ultima">
-	          <select name="cidade">
-	            <option value="0">Cidade</option>
-	            <option value="masculino">São Paulo</option>
-	            <option value="feminino">Americana</option>
-	            <option value="outro">Campinas</option>
+	          <select name="cidade" id="cidade">
+	            <option value="">Cidade</option>
 	          </select>
 	        </div>
 	        <div class="rs-12colunas legenda">
@@ -165,8 +162,10 @@
 
 
   <!-- Scripts -->
-  <script src="${urlAmazonPresenter.s3AssetsUrl}/js/site-html/jquery-1.11.2.min.js" type="text/javascript"></script>
-  <script src="${urlAmazonPresenter.s3AssetsUrl}/js/site-html/main.js" type="text/javascript"></script>
+  <script src="${urlAmazonPresenter.s3AssetsUrl}/site-html/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+  <script src="${urlAmazonPresenter.s3AssetsUrl}/site-html/js/main.js" type="text/javascript"></script>
+  
+  <script src="js/city.js" type="text/javascript"></script>
   <!-- Fim Scripts -->
 
 </body>

@@ -5,7 +5,10 @@ import javax.inject.Inject;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
+
+import com.procurandoape.home.Cities;
 
 @Controller
 public class UserController {
@@ -14,10 +17,16 @@ public class UserController {
 
 	private Users users;
 
+	private Cities cities;
+
+	private Result result;
+
 	@Inject
-	public UserController(Validator validator, Users users) {
+	public UserController(Validator validator, Users users, Cities cities, Result result) {
 		this.validator = validator;
 		this.users = users;
+		this.cities = cities;
+		this.result = result;
 	}
 
 	@Deprecated //CDI Eyes only
@@ -26,6 +35,7 @@ public class UserController {
 
 	@Get("/user")
 	public void user() {
+		result.include("states", cities.getAllStates());
 	}
 
 	@Post("/user")

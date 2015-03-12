@@ -12,14 +12,22 @@ import com.procurandoape.user.Users;
 @Controller
 public class HomeController {
 
-	@Inject
 	private Users users;
 
-	@Inject
 	private PlacesToRental rooms;
 
-	@Inject
 	private Result result;
+
+	@Inject
+	public HomeController(Users users, PlacesToRental rooms, Result result) {
+		this.users = users;
+		this.rooms = rooms;
+		this.result = result;
+	}
+
+	@Deprecated //CDI Eyes only
+	HomeController() {
+	}
 
 	@Get("/")
 	public void index() {
