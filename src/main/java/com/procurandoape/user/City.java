@@ -7,9 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -24,20 +21,31 @@ public class City implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "name", nullable = false)
+	@Column(name = "name", length = 100, nullable = false)
 	@NotBlank
 	private String name;
 
-	@ManyToOne
-	@JoinColumns(@JoinColumn(name = "state_id"))
-	private State state;
+	@Column(name = "state", length = 100, nullable = false)
+	@NotBlank
+	private String state;
 
-	public State getState() {
-		return state;
-	}
+	@Column(name = "state_abbreviation", nullable = false, columnDefinition = "char(2)")
+	@NotBlank
+	private String state_abbreviation;
+
+	@Column(name = "district", length = 100, nullable = false)
+	private String district;
 
 	public String getName() {
 		return name;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public String getState_abbreviation() {
+		return state_abbreviation;
 	}
 
 }

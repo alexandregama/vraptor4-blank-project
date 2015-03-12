@@ -2,7 +2,6 @@ package com.procurandoape.place;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,9 +28,6 @@ public class PlaceToLive implements Serializable {
 	@JoinColumn(name = "city_id")
 	private City city;
 
-	@Column(name = "neighborhood", length = 100)
-	private String neighborhood;
-
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -44,7 +40,4 @@ public class PlaceToLive implements Serializable {
 		return user;
 	}
 
-	public String getNeighborhood() {
-		return neighborhood;
-	}
 }

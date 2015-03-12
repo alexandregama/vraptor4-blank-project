@@ -102,7 +102,7 @@ Você também pode fazer a busca do seu jeito.</p>
 	          </figure>
 	          <a href="/anuncio/xxxx/id">
 	            <h3>${place.shortDescription}</h3>
-	            <p>${place.neighborhood}, ${place.city.name} - ${place.city.state.abbreviation}</p>
+	            <p>${place.city.district}, ${place.city.name} - ${place.city.state.abbreviation}</p>
 	          </a>
 	        </div>
 	      </c:forEach>
@@ -122,7 +122,7 @@ Você também pode fazer a busca do seu jeito.</p>
 	          <h4>${user.fullName}</h4>
 	          <p>
 	            Procura um espaço em: <br>
-	            <strong>${user.placeToLive.neighborhood}, ${user.placeToLive.city.name} - ${user.placeToLive.city.state.abbreviation}</strong>
+	            <strong>${user.placeToLive.city.district}, ${user.placeToLive.city.name} - ${user.placeToLive.city.state.abbreviation}</strong>
 	          </p>        
 	        </a>
 	      </div>

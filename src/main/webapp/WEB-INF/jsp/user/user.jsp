@@ -52,19 +52,22 @@
     <!-- Formulário de Cadastro de Usuário -->
     <section id="formulario">
       <h1>Crie seu perfil de forma rápida e fácil :)</h1>
-      <c:forEach items="${errors}" var="error">
-      	${error}
-      </c:forEach>
+      <!-- ERROS -->
+	      <c:forEach items="${errors}" var="error">
+	      	${error}
+	      </c:forEach>
+      <!-- ERROS -->
+      
       <a href="" class="icon-facebook2 bt-facebook">Cadastre-se usando o Facebook</a>
       <a href="" class="icon-google-plus2 bt-google">Cadastre-se usando o Facebook</a>
       <span class="ou"><strong>OU</strong></span>
       
       <div class="bloco-cad colunas">
       	<form action="user" method="post">
-	        <select name="tipo-busca">
-	          <option value="0">Tipo do anúncio (Você tem ou precisa de um espaço?)</option>
-	          <option value="tenho">Tenho uma vaga</option>
-	          <option value="preciso">Preciso de uma vaga</option>
+	        <select name="user.placeType">
+	          <option value="">Tipo do anúncio (Você tem ou precisa de um espaço?)</option>
+	          <option value="HAS_PLACE">Tenho uma vaga</option>
+	          <option value="NEEDS_PALCE">Preciso de uma vaga</option>
 	        </select>
 	        <div class="rs-6colunas primeira"><input type="text" name="user.firstName" placeholder="Nome"/></div>
 	        <div class="rs-6colunas ultima"><input type="text" name="user.lastName" placeholder="Sobrenome"/></div>

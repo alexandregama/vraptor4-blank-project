@@ -25,7 +25,10 @@ public enum PlaceType {
 	public static PlaceType getEnumName(String name) {
 		if (name.equals("NEEDS")) {
 			return PlaceType.NEEDS_PLACE;
+		} else if (name.equals("HAS")) {
+			return PlaceType.HAS_PLACE;
 		}
-		return PlaceType.HAS_PLACE;
+		throw new IllegalArgumentException("Error while trying to retrieve the PlaceType from name: " + name);
 	}
+
 }

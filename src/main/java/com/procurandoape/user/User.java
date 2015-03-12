@@ -1,6 +1,7 @@
 package com.procurandoape.user;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -66,8 +67,8 @@ public class User implements Serializable {
 	@Column(name = "photo", length = 100)
 	private String photo;
 
-	@Column(name = "gender", columnDefinition = "char(1)")
 	@Convert(converter = GenderEnumToGenderJPAConverter.class)
+	@Column(name = "gender", columnDefinition = "char(1)")
 	private Gender gender;
 
 	@OneToOne
@@ -89,7 +90,7 @@ public class User implements Serializable {
 	private Boolean acceptsPerfilSuggestion;
 
 	@Convert(converter = PlaceTypeEnumToPlaceTypeJpaConverter.class)
-	@Column(name = "place_type", columnDefinition = "char(1)")
+	@Column(name = "place_type", columnDefinition = "char(11)")
 	private PlaceType placeType;
 
 	@Override
@@ -97,11 +98,11 @@ public class User implements Serializable {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", email=" + email + ", password=" + password
 				+ ", passwordConfirmation=" + passwordConfirmation
-				+ ", birthday=" + birthday + ", photo=" + photo + ", gender="
+				+ ", birthday=" + new SimpleDateFormat("dd/MM/yyyy").format(birthday.getTime()) + ", photo=" + photo + ", gender="
 				+ gender + ", city=" + city + ", smoker=" + smoker
 				+ ", placesToLive=" + placesToLive + ", placesToRental="
 				+ placesToRental + ", acceptsPerfilSuggestion="
-				+ acceptsPerfilSuggestion + "]";
+				+ acceptsPerfilSuggestion + ", placeType=" + placeType + "]";
 	}
 
 	public String getFirstName() {
@@ -202,6 +203,14 @@ public class User implements Serializable {
 
 	public void setAcceptsPerfilSuggestion(Boolean acceptsPerfilSuggestion) {
 		this.acceptsPerfilSuggestion = acceptsPerfilSuggestion;
+	}
+
+	public PlaceType getPlaceType() {
+		return placeType;
+	}
+
+	public void setPlaceType(PlaceType placeType) {
+		this.placeType = placeType;
 	}
 
 }
