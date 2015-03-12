@@ -13,6 +13,7 @@ import br.com.caelum.vraptor.validator.Validator;
 
 import com.procurandoape.home.Cities;
 import com.procurandoape.home.HomeController;
+import com.procurandoape.login.UserSession;
 
 @Controller
 public class UserController {
@@ -25,12 +26,15 @@ public class UserController {
 
 	private Result result;
 
+	private UserSession userSession;
+
 	@Inject
-	public UserController(Validator validator, Users users, Cities cities, Result result) {
+	public UserController(Validator validator, Users users, Cities cities, Result result, UserSession userSession) {
 		this.validator = validator;
 		this.users = users;
 		this.cities = cities;
 		this.result = result;
+		this.userSession = userSession;
 	}
 
 	@Deprecated //CDI Eyes only
@@ -56,6 +60,7 @@ public class UserController {
 		validator.onErrorRedirectTo(UserController.class).user();
 
 		users.save(user);
+		userSession.add(user);
 		result.redirectTo(HomeController.class).index();
 	}
 
