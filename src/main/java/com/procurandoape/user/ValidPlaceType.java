@@ -1,4 +1,4 @@
-package com.procurandoape.jpavalidators;
+package com.procurandoape.user;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,11 +9,11 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD})
-@Constraint(validatedBy = CityValidator.class)
-public @interface ValidCity {
+@Target(ElementType.FIELD)
+@Constraint(validatedBy = PlaceTypeValidator.class)
+public @interface ValidPlaceType {
 
-	String message() default "{user.city.invalid}";
+	String message() default "{user.placetype.empty}";
 
 	Class<?>[] groups() default {};
 

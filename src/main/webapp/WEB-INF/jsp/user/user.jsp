@@ -8,7 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Cadastre-se para dividir quarto, apartamento, casa, etc...</title>
 	<link rel="stylesheet" href="${urlAmazonPresenter.s3AssetsUrl}/site-html/css/main.css" />
-  <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+  	<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 </head>
 <body>
 

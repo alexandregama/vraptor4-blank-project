@@ -51,6 +51,7 @@ public class User implements Serializable {
 
 	@Column(name = "email", length = 100, nullable = false)
 	@Email(message = "{user.email.invalid}")
+	@NotBlank(message = "{user.email.empty}")
 	private String email;
 
 	@Column(name = "password", length = 10, nullable = false)
@@ -94,6 +95,7 @@ public class User implements Serializable {
 
 	@Convert(converter = PlaceTypeEnumToPlaceTypeJpaConverter.class)
 	@Column(name = "place_type", columnDefinition = "char(11)")
+	@ValidPlaceType
 	private PlaceType placeType;
 
 	@Override

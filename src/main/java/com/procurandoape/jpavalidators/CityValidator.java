@@ -12,11 +12,8 @@ public class CityValidator implements ConstraintValidator<ValidCity, City> {
 	}
 
 	@Override
-	public boolean isValid(City value, ConstraintValidatorContext context) {
-		if (value == null || value.getId() == null) {
-			return false;
-		}
-		return true;
+	public boolean isValid(City city, ConstraintValidatorContext context) {
+		return city != null && city.getId() != null;
 	}
 
 }
