@@ -9,6 +9,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 
 import com.procurandoape.home.Cities;
+import com.procurandoape.home.HomeController;
 
 @Controller
 public class UserController {
@@ -40,10 +41,11 @@ public class UserController {
 
 	@Post("/user")
 	public void create(User user) {
-		System.out.println(user);
+		validator.validate(user);
 		validator.onErrorRedirectTo(UserController.class).user();
 
 		users.save(user);
+		result.redirectTo(HomeController.class).index();
 	}
 
 }

@@ -36,6 +36,13 @@ public class City implements Serializable {
 	@Column(name = "district", length = 100, nullable = false)
 	private String district;
 
+	@Override
+	public String toString() {
+		return "City [id=" + id + ", name=" + name + ", state=" + state
+				+ ", stateAbbreviation=" + stateAbbreviation + ", district="
+				+ district + "]";
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -50,6 +57,18 @@ public class City implements Serializable {
 
 	public String getDistrict() {
 		return district;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 }

@@ -54,7 +54,7 @@
       <h1>Crie seu perfil de forma rápida e fácil :)</h1>
       <!-- ERROS -->
 	      <c:forEach items="${errors}" var="error">
-	      	${error}
+	      	${error.message} <br/>
 	      </c:forEach>
       <!-- ERROS -->
       
@@ -93,7 +93,7 @@
 	          </select>
 	        </div>
 	        <div class="rs-6colunas ultima">
-	          <select name="cidade" id="cidade">
+	          <select name="user.city.id" id="cidade">
 	            <option value="">Cidade</option>
 	          </select>
 	        </div>

@@ -1,7 +1,6 @@
 package com.procurandoape.user;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -27,6 +26,7 @@ import org.joda.time.Years;
 import com.procurandoape.converters.BooleanToStringConverterJPA;
 import com.procurandoape.converters.GenderEnumToGenderJPAConverter;
 import com.procurandoape.converters.PlaceTypeEnumToPlaceTypeJpaConverter;
+import com.procurandoape.jpavalidators.ValidCity;
 import com.procurandoape.place.PlaceToLive;
 import com.procurandoape.room.PlaceToRental;
 import com.procurandoape.util.RoomConfig;
@@ -42,19 +42,19 @@ public class User implements Serializable {
 	private Long id;
 
 	@Column(name = "first_name", length = 50, nullable = false)
-	@NotBlank
+	@NotBlank(message = "{user.firstname.empty}")
 	private String firstName;
 
 	@Column(name = "last_name", length = 50, nullable = false)
-	@NotBlank
+	@NotBlank(message = "{user.lastname.empty}")
 	private String lastName;
 
 	@Column(name = "email", length = 100, nullable = false)
-	@Email
+	@Email(message = "{user.email.invalid}")
 	private String email;
 
 	@Column(name = "password", length = 10, nullable = false)
-	@NotBlank
+	@NotBlank(message = "{user.password.empty}")
 	private String password;
 
 	@Transient
@@ -62,6 +62,7 @@ public class User implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "birthday")
+	@NotBlank(message = "{user.birthday.empty}")
 	private Calendar birthday;
 
 	@Column(name = "photo", length = 100)
@@ -69,10 +70,12 @@ public class User implements Serializable {
 
 	@Convert(converter = GenderEnumToGenderJPAConverter.class)
 	@Column(name = "gender", columnDefinition = "char(1)")
+	@NotBlank(message = "{user.gender.empty}")
 	private Gender gender;
 
 	@OneToOne
 	@JoinColumn(name = "city_id")
+	@ValidCity
 	private City city;
 
 	@Convert(converter = BooleanToStringConverterJPA.class)
@@ -98,7 +101,7 @@ public class User implements Serializable {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", email=" + email + ", password=" + password
 				+ ", passwordConfirmation=" + passwordConfirmation
-				+ ", birthday=" + new SimpleDateFormat("dd/MM/yyyy").format(birthday.getTime()) + ", photo=" + photo + ", gender="
+				+ ", photo=" + photo + ", gender="
 				+ gender + ", city=" + city + ", smoker=" + smoker
 				+ ", acceptsPerfilSuggestion=" + acceptsPerfilSuggestion + ", placeType=" + placeType + "]";
 	}
