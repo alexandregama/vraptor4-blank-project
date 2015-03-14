@@ -57,6 +57,12 @@ public class LoginController {
 	public void redefinePassword() {
 	}
 
+	@Post("/password/redefine")
+	public void redefinePassword(Password password) {
+		validator.validate(password);
+		validator.onErrorRedirectTo(LoginController.class).redefinePassword();
+	}
+
 	@Post("/login")
 	public void signin(User user) {
 		if (user.hasEmptyCredentialsSignin()) {

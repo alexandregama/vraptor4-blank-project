@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,13 +52,25 @@
     <!-- Formulário de Cadastro de Usuário -->
     <section id="formulario">
       <h1>Crie uma nova senha :)</h1>
-      <div class="bloco-cad colunas">        
-        <div class="rs-4colunas primeira"><input type="password" name="senha" placeholder="Nova senha"/></div>  
-        <div class="rs-4colunas"><input type="password" name="confirmar-senha" placeholder="Confirmar nova senha"/></div> 
-        <div class="rs-4colunas ultima">
-          <a href="#" class="rs-botao laranja full mtop5">Salvar senha</a>
-        </div>
-      </div>      
+      
+      <c:forEach items="${errors}" var="error">
+      	${error.message} <br/>
+      </c:forEach>
+      
+      <div class="bloco-cad colunas">
+      	<form action="password/redefine" method="POST">
+	        <div class="rs-4colunas primeira">
+	        	<input type="password" name="password.value" placeholder="Nova senha"/>
+	        </div>  
+	        <div class="rs-4colunas">
+	        	<input type="password" name="password.confirmation" placeholder="Confirmar nova senha"/>
+	        </div> 
+	        <div class="rs-4colunas ultima">
+	          <input type="submit" class="rs-botao laranja full mtop5" value="Salvar senha"></input>
+	        </div>
+      	</form>
+      </div>
+            
     </section>
     <!-- Fim Formulário de Cadastro de Usuário -->
 
