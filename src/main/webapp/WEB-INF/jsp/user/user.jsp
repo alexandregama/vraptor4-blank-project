@@ -169,7 +169,7 @@
   <script src="${urlAmazonPresenter.s3AssetsUrl}/site-html/js/main.js" type="text/javascript"></script>
   
   <script src="js/city.js" type="text/javascript"></script>
-  <!-- Fim Scripts -->
+  <!-- FIM SCRIPTS -->
 
 </body>
 </html>
