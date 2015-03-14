@@ -164,7 +164,7 @@
   </div>
 
 
-  <!-- Scripts -->
+  <!-- SCRIPTS -->
   <script src="${urlAmazonPresenter.s3AssetsUrl}/site-html/js/jquery-1.11.2.min.js" type="text/javascript"></script>
   <script src="${urlAmazonPresenter.s3AssetsUrl}/site-html/js/main.js" type="text/javascript"></script>
   
