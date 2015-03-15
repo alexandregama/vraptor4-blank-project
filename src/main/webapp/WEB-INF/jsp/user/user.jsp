@@ -71,11 +71,10 @@
 	          </select>
 	        </div>
 	        <div class="rs-12colunas legenda">
-	          <input type="checkbox" name="aceito-sugestoes-perfis" checked/>
+	          <input type="checkbox" name="user.acceptsPerfilSuggestion" checked/>
 	          Aceito sugestões de perfis que desejam procurar um lugar junto comigo
 	        </div>
-	        <div class="rs-6colunas primeira legenda rs-2linhas">
-	          <input type="checkbox" name="user.acceptsPerfilSuggestion" checked/>
+	        <div class="rs-6colunas primeira legenda rs-2linhas">	          
 	          Ao se cadastrar você concorda com os <a href="/termos-de-uso">Termos de Uso</a> e nossa <a href="/politica-privacidade">Política de Privacidade</a>.
 	        </div>
 	        
