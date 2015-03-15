@@ -50,6 +50,15 @@ public class PlaceToRental implements Serializable {
 	@Column(name = "price")
 	private BigDecimal price;
 
+	@Column(name = "price_expenses")
+	private BigDecimal priceExpenses;
+
+	@Column(name = "available_places_amount")
+	private Integer availablePlacesAmount;
+
+	@Column(name = "room_type_amount")
+	private Integer roomTypeAmount;
+
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "price_type", length = 15)
 	private PriceType priceType;
@@ -66,10 +75,10 @@ public class PlaceToRental implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Room [id=" + id + ", user=" + user + ", shortDescription="
-				+ shortDescription + ", description=" + description
-				+ ", price=" + price + ", priceType=" + priceType + ", city="
-				+ city + "]";
+		return "PlaceToRental [id=" + id + ", user=" + user
+				+ ", shortDescription=" + shortDescription + ", description="
+				+ description + ", price=" + price + ", priceType=" + priceType
+				+ ", city=" + city + ", neighborhood=" + neighborhood + "]";
 	}
 
 	public void setPrice(BigDecimal price) {
@@ -120,5 +129,49 @@ public class PlaceToRental implements Serializable {
 
 	public String getNeighborhood() {
 		return neighborhood;
+	}
+
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setPriceType(PriceType priceType) {
+		this.priceType = priceType;
+	}
+
+	public void setNeighborhood(String neighborhood) {
+		this.neighborhood = neighborhood;
+	}
+
+	public void setMainPicture(String mainPicture) {
+		this.mainPicture = mainPicture;
+	}
+
+	public BigDecimal getPriceExpenses() {
+		return priceExpenses;
+	}
+
+	public void setPriceExpenses(BigDecimal priceExpenses) {
+		this.priceExpenses = priceExpenses;
+	}
+
+	public Integer getAvailablePlacesAmount() {
+		return availablePlacesAmount;
+	}
+
+	public void setAvailablePlacesAmount(Integer availablePlacesAmount) {
+		this.availablePlacesAmount = availablePlacesAmount;
+	}
+
+	public Integer getRoomTypeAmount() {
+		return roomTypeAmount;
+	}
+
+	public void setRoomTypeAmount(Integer roomTypeAmount) {
+		this.roomTypeAmount = roomTypeAmount;
 	}
 }

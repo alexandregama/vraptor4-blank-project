@@ -52,11 +52,6 @@ public class UserController {
 		result.include("user", user);
 	}
 
-	@Get("/place-to-rental")
-	public void placeToRental() {
-
-	}
-
 	@Post("/user")
 	public void create(User user) {
 		validator.validate(user);

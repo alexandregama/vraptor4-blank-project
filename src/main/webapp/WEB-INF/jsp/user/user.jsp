@@ -13,38 +13,8 @@
 <body>
 
   <!-- Header -->
-  <header class="claro clearfix">
-    <div class="container colunas">
-      <div class="rs-3colunas primeira">
-        <a href="#" class="sprite logo"></a>   
-        <span id="menu-mobile" class="icon-cross icon-menu sm"></span>     
-      </div>
-      <div class="rs-9colunas ultima">
-        <ul class="menu deslogado">
-          <li><a href="/login">Fazer Login</a></li>
-          <li><a href="/criar-perfil" class="rs-botao azul-claro medio">Anuncie Grátis</a></li>
-        </ul>
-        <!-- <ul class="menu menu-profile">
-          <li class="hm"><a href="/login" class="icon-bell"></a></li>
-          <li class="hm"><a href="/login" class="icon-mail3"></a></li>
-          <li class="profile clearfix">              
-              <a href="perfil/ronerysouza">
-                <img src="imagens/perfil-usuario.jpg" alt="Ronery Souza Procurando Apê">
-                <span>Ronery Souza</span>
-              </a>              
-              <ul class="submenu-profile">
-                <li class="sm"><a href="/login">Meus Alertas (3)</a></li>
-                <li class="sm"><a href="/login">Minhas Mensagens (1)</a></li>
-                <li><a href="meu-painel">Painel de Controle</a></li>
-                <li><a href="meus-anuncios">Meus Anúncios</a></li>
-                <li><a href="sair">Sair</a></li>
-              </ul>
-          </li>
-          <li id="configPerfil" class="icon-cross icon-cog hm"></li>
-        </ul>     -->    
-      </div>
-    </div>
-  </header>
+  	<c:import url="../header.jsp"/>
+  <!-- Header -->
 
   <!-- Página -->
   <div id="pagina">
