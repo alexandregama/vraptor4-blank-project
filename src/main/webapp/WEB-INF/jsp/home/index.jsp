@@ -131,7 +131,7 @@ Você também pode fazer a busca do seu jeito.</p>
     </section>
     <!-- Fim Perfis -->
 
-	<c:import url="../rodape.jsp"></c:import>
+	<c:import url="../rodape.jsp"/>
 
   </div>
 
