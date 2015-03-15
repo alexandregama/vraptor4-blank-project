@@ -40,7 +40,7 @@ public class LoginController {
 	}
 
 	@Get("/login")
-	public void show() {
+	public void login() {
 	}
 
 	@Get("/logout")
@@ -83,7 +83,7 @@ public class LoginController {
 			validator.add(new I18nMessage("signin.invalid", "user.signin.invalid.credentials"));
 		}
 
-		validator.onErrorRedirectTo(LoginController.class).show();
+		validator.onErrorRedirectTo(LoginController.class).login();
 	}
 
 }

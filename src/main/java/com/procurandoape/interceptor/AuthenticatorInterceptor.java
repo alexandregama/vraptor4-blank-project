@@ -33,7 +33,7 @@ public class AuthenticatorInterceptor {
 		if (userSession.isUserLogged()) {
 			return ic.proceed();
 		}
-		result.redirectTo(LoginController.class).show();
+		result.redirectTo(LoginController.class).login();
 		return ic;
 	}
 
