@@ -14,6 +14,7 @@ import com.procurandoape.home.HomeController;
 import com.procurandoape.interceptor.Authenticator;
 import com.procurandoape.user.User;
 import com.procurandoape.user.Users;
+import com.procurandoape.util.I18nMessageKey;
 
 @Controller
 public class LoginController {
@@ -60,7 +61,11 @@ public class LoginController {
 	@Post("/password/redefine")
 	public void redefinePassword(Password password) {
 		validator.validate(password);
+		validator.ensure(password.confirmationMatched(), new I18nMessage("password.confirmation", "user.redefinepassword.confirmation"));
+
 		validator.onErrorRedirectTo(LoginController.class).redefinePassword();
+		users.updatePassword(userSession.getUser(), password);
+		result.include("redefinedPasswordSuccess", I18nMessageKey.getKey("user.password.success.redefined"));
 	}
 
 	@Post("/login")

@@ -3,6 +3,7 @@ package com.procurandoape.user;
 import java.util.List;
 
 import com.google.common.base.Optional;
+import com.procurandoape.login.Password;
 
 public interface Users {
 
@@ -13,5 +14,7 @@ public interface Users {
 	Optional<User> findBy(User user);
 
 	boolean emailAlreadyExists(User user);
+
+	void updatePassword(User user, Password password);
 
 }

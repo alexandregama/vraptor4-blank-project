@@ -112,6 +112,10 @@ public class User implements Serializable {
 				+ ", acceptsPerfilSuggestion=" + acceptsPerfilSuggestion + ", placeType=" + placeType + "]";
 	}
 
+	public Long getId() {
+		return this.id;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

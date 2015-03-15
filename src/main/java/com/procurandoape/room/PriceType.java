@@ -1,6 +1,6 @@
 package com.procurandoape.room;
 
-import com.procurandoape.util.I18nMessage;
+import com.procurandoape.util.I18nMessageKey;
 
 public enum PriceType {
 
@@ -13,7 +13,7 @@ public enum PriceType {
 	}
 
 	public String getValue() {
-		return I18nMessage.getKey(value);
+		return I18nMessageKey.getKey(value);
 	}
 
 }

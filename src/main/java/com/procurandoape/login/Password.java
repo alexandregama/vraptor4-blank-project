@@ -30,4 +30,8 @@ public class Password {
 		this.confirmation = confirmation;
 	}
 
+	public boolean confirmationMatched() {
+		return this.value.equals(this.confirmation);
+	}
+
 }

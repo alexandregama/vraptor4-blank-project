@@ -8,6 +8,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import com.google.common.base.Optional;
+import com.procurandoape.login.Password;
 
 public class HibernateUsersDao implements Users {
 
@@ -61,6 +62,15 @@ public class HibernateUsersDao implements Users {
 		} catch (NoResultException e) {
 			return false;
 		}
+	}
+
+	@Override
+	public void updatePassword(User user, Password password) {
+		User userToUpdate = manager.find(User.class, user.getId());
+		userToUpdate.setPassword(password.getValue());
+		manager.getTransaction().begin();
+		manager.merge(userToUpdate);
+		manager.getTransaction().commit();
 	}
 
 }

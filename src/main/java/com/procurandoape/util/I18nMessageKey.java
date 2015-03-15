@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
-public class I18nMessage {
+public class I18nMessageKey {
 
 	public static String getKey(String key) {
 		ResourceBundle bundle = PropertyResourceBundle.getBundle("messages", new Locale("pt", "BR"));

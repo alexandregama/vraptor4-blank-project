@@ -57,6 +57,10 @@
       	${error.message} <br/>
       </c:forEach>
       
+      <div>
+      	${redefinedPasswordSuccess}
+      </div>
+      
       <div class="bloco-cad colunas">
       	<form action="password/redefine" method="POST">
 	        <div class="rs-4colunas primeira">
