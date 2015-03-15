@@ -13,38 +13,9 @@
 <body>
 
   <!-- Header -->
-  <header class="claro clearfix">
-    <div class="container colunas">
-      <div class="rs-3colunas primeira">
-        <a href="#" class="sprite logo"></a>   
-        <span id="menu-mobile" class="icon-cross icon-menu sm"></span>     
-      </div>
-      <div class="rs-9colunas ultima">
-        <ul class="menu deslogado">
-          <li><a href="/login">Fazer Login</a></li>
-          <li><a href="/criar-perfil" class="rs-botao azul-claro medio">Anuncie Grátis</a></li>
-        </ul>
-        <!-- <ul class="menu menu-profile">
-          <li class="hm"><a href="/login" class="icon-bell"></a></li>
-          <li class="hm"><a href="/login" class="icon-mail3"></a></li>
-          <li class="profile clearfix">              
-              <a href="perfil/ronerysouza">
-                <img src="imagens/perfil-usuario.jpg" alt="Ronery Souza Procurando Apê">
-                <span>Ronery Souza</span>
-              </a>              
-              <ul class="submenu-profile">
-                <li class="sm"><a href="/login">Meus Alertas (3)</a></li>
-                <li class="sm"><a href="/login">Minhas Mensagens (1)</a></li>
-                <li><a href="meu-painel">Painel de Controle</a></li>
-                <li><a href="meus-anuncios">Meus Anúncios</a></li>
-                <li><a href="sair">Sair</a></li>
-              </ul>
-          </li>
-          <li id="configPerfil" class="icon-cross icon-cog hm"></li>
-        </ul>     -->    
-      </div>
-    </div>
-  </header>
+  	<c:import url="../header.jsp"/>
+  <!-- Header -->
+  
 
   <!-- Página -->
   <div id="pagina" class="colunas">
@@ -52,10 +23,10 @@
     <section class="sidebar-perfil rs-3colunas primeira">
       <div class="perfil">
         <figure>
-          <img src="imagens/perfil-usuario.jpg" class="circular" alt="Ronery Souza">
+          <img src="${user.photo}" class="circular" alt="Ronery Souza">
           <span class="icon-heart"></span>
         </figure>
-        <h2>Ronery Souza Ferreira - 28</h2>
+        <h2>${user.fullName} - ${user.age}</h2>
         <p>Buscando uma vaga em: <br> <strong>Bela Vista, São Paulo - SP</strong></p>
         <a href="tel:+11964551258">(11) 96455-1258</a>
         <div class="rs-botao full azul-claro icon-mail3">Enviar Mensagem</div>
@@ -68,7 +39,7 @@
         
         <!-- Se o usuário tem um espaço exlua este bloco até o próximo comentário -->
         <div class="rs-12colunas">        
-          <h1>Oi, sou o Ronery</h1>
+          <h1>Oi, sou ${user.firstNameWithGender}</h1>
           <p>Estou procurando um apartamento próximo à Av. Paulista, pois trabalho nesta região</p>
           <ul>
             <li class="icon-location2"><strong>Bela Vista, São Paulo - SP</strong></li>

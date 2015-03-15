@@ -73,4 +73,9 @@ public class HibernateUsersDao implements Users {
 		manager.getTransaction().commit();
 	}
 
+	@Override
+	public User findById(User user) {
+		return manager.find(User.class, user.getId());
+	}
+
 }

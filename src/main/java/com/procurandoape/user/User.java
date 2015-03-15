@@ -262,4 +262,12 @@ public class User implements Serializable {
 	public boolean hasEmptyCredentialsSignin() {
 		return this.email == null || this.email.isEmpty() || this.password == null || this.password.isEmpty();
 	}
+
+	public String getFirstNameWithGender() {
+		if (this.gender.equals(Gender.MALE)) {
+			return "o " + this.firstName;
+		} else {
+			return "a " + this.firstName;
+		}
+	}
 }

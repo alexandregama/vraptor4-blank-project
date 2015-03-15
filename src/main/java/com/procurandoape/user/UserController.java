@@ -46,6 +46,17 @@ public class UserController {
 		result.include("states", cities.getAllStates());
 	}
 
+	@Get("/perfil")
+	public void perfil() {
+		User user = users.findById(userSession.getUser());
+		result.include("user", user);
+	}
+
+	@Get("/place-to-rental")
+	public void placeToRental() {
+
+	}
+
 	@Post("/user")
 	public void create(User user) {
 		validator.validate(user);
