@@ -11,21 +11,21 @@ import com.procurandoape.login.LoginController;
 import com.procurandoape.login.UserSession;
 
 @Interceptor
-@Authenticator
-public class AuthenticatorInterceptor {
+@BlockUnloggedUser
+public class BlockUnloggedUserInterceptor {
 
 	private UserSession userSession;
 
 	private Result result;
 
 	@Inject
-	public AuthenticatorInterceptor(UserSession userSession, Result result) {
+	public BlockUnloggedUserInterceptor(UserSession userSession, Result result) {
 		this.userSession = userSession;
 		this.result = result;
 	}
 
 	@Deprecated //CDI Eyes only
-	AuthenticatorInterceptor() {
+	BlockUnloggedUserInterceptor() {
 	}
 
 	@AroundInvoke

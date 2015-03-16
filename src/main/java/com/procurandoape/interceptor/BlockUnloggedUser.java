@@ -12,6 +12,6 @@ import javax.interceptor.InterceptorBinding;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({TYPE, METHOD})
 @InterceptorBinding
-public @interface Authenticator {
+public @interface BlockUnloggedUser {
 
 }

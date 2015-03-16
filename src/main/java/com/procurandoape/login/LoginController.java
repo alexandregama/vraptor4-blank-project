@@ -11,7 +11,7 @@ import br.com.caelum.vraptor.validator.Validator;
 
 import com.google.common.base.Optional;
 import com.procurandoape.home.HomeController;
-import com.procurandoape.interceptor.Authenticator;
+import com.procurandoape.interceptor.BlockUnloggedUser;
 import com.procurandoape.user.User;
 import com.procurandoape.user.Users;
 import com.procurandoape.util.I18nMessageKey;
@@ -53,7 +53,7 @@ public class LoginController {
 	public void retrievePassword() {
 	}
 
-	@Authenticator
+	@BlockUnloggedUser
 	@Get("/password")
 	public void redefinePassword() {
 	}

@@ -13,7 +13,7 @@ import br.com.caelum.vraptor.util.test.MockResult;
 
 import com.procurandoape.login.UserSession;
 
-public class AuthenticatorInterceptorTest {
+public class BlockUnloggedUserInterceptorTest {
 
 	private UserSession userSession;
 
@@ -29,7 +29,7 @@ public class AuthenticatorInterceptorTest {
 
 	@Test
 	public void shouldNotInterceptUserWhenTryingToAccessDeniedPage() throws Exception {
-		AuthenticatorInterceptor interceptor = new AuthenticatorInterceptor(userSession, result);
+		BlockUnloggedUserInterceptor interceptor = new BlockUnloggedUserInterceptor(userSession, result);
 
 		when(userSession.isUserLogged()).thenReturn(true);
 

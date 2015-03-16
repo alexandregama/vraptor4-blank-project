@@ -8,7 +8,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 
-import com.procurandoape.interceptor.Authenticator;
+import com.procurandoape.interceptor.BlockUnloggedUser;
 import com.procurandoape.login.UserSession;
 import com.procurandoape.room.PlaceToRental;
 import com.procurandoape.user.User;
@@ -35,7 +35,7 @@ public class PlaceToRentalController {
 	PlaceToRentalController() {
 	}
 
-	@Authenticator
+	@BlockUnloggedUser
 	@Get("/place-to-rental")
 	public void placeToRental() {
 		User loggedUser = userSession.getUser();
