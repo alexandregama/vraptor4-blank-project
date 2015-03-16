@@ -58,6 +58,9 @@ public class PlaceToRental implements Serializable {
 
 	@Column(name = "room_type_amount")
 	private Integer roomTypeAmount;
+	
+	@Column(name = "minimum_stay")
+	private Integer minimumStay;
 
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "price_type", length = 15)
