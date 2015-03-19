@@ -4,10 +4,10 @@ import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
+import javax.servlet.http.HttpServletRequest;
 
 import br.com.caelum.vraptor.Result;
 
-import com.procurandoape.login.LoginController;
 import com.procurandoape.login.UserSession;
 
 @Interceptor
@@ -18,10 +18,13 @@ public class BlockUnloggedUserInterceptor {
 
 	private Result result;
 
+	private HttpServletRequest request;
+
 	@Inject
-	public BlockUnloggedUserInterceptor(UserSession userSession, Result result) {
+	public BlockUnloggedUserInterceptor(UserSession userSession, Result result, HttpServletRequest request) {
 		this.userSession = userSession;
 		this.result = result;
+		this.request = request;
 	}
 
 	@Deprecated //CDI Eyes only
@@ -33,7 +36,10 @@ public class BlockUnloggedUserInterceptor {
 		if (userSession.isUserLogged()) {
 			return ic.proceed();
 		}
-		result.redirectTo(LoginController.class).login();
+		String uri = request.getRequestURI();
+		String previousUri = uri.replace("/room/", "");
+		result.redirectTo("login?redirectAfterLogin=" + previousUri);
+
 		return ic;
 	}
 

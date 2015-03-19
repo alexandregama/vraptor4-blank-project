@@ -6,7 +6,6 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.validator.Validator;
 
 import com.procurandoape.interceptor.BlockUnloggedUser;
 import com.procurandoape.login.UserSession;
@@ -18,15 +17,13 @@ import com.procurandoape.user.Users;
 public class PlaceToRentalController {
 
 	private Result result;
-	private Validator validator;
 	private UserSession userSession;
 	private Users users;
 
 	@Inject
-	public PlaceToRentalController(Result result, Validator validator, UserSession userSession,
+	public PlaceToRentalController(Result result, UserSession userSession,
 			Users users) {
 		this.result = result;
-		this.validator = validator;
 		this.userSession = userSession;
 		this.users = users;
 	}
