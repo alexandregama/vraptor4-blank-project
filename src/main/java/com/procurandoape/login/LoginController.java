@@ -44,6 +44,9 @@ public class LoginController {
 
 	@Get("/login")
 	public void login() {
+		if (userSession.isUserLogged()) {
+			result.redirectTo(HomeController.class).index();
+		}
 	}
 
 	@Get("/logout")
