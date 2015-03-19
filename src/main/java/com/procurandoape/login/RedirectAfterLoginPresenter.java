@@ -1,10 +1,12 @@
 package com.procurandoape.login;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 @Named
+@RequestScoped
 public class RedirectAfterLoginPresenter {
 
 	private HttpServletRequest request;
