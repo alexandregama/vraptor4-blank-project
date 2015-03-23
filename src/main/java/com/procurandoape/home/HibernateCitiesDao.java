@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.google.common.base.Optional;
 import com.procurandoape.user.City;
 
 public class HibernateCitiesDao implements Cities {
@@ -35,11 +36,12 @@ public class HibernateCitiesDao implements Cities {
 	}
 
 	@Override
-	public List<City> getByStateAbbreviation(String state) {
+	public Optional<List<City>> getByStateAbbreviation(String state) {
 		String sql = "select c from City c where c.stateAbbreviation = :abbreviation group by name order by name";
 		TypedQuery<City> query = manager.createQuery(sql, City.class);
 		query.setParameter("abbreviation", state);
-		return query.getResultList();
+
+		return Optional.fromNullable(query.getResultList());
 	}
 
 }

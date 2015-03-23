@@ -58,7 +58,7 @@ public class PlaceToRental implements Serializable {
 
 	@Column(name = "room_type_amount")
 	private Integer roomTypeAmount;
-	
+
 	@Column(name = "minimum_stay")
 	private Integer minimumStay;
 
@@ -70,18 +70,31 @@ public class PlaceToRental implements Serializable {
 	@JoinColumn(name = "city_id")
 	private City city;
 
+	@Column(name = "zipcode", length = 8)
+	private String zipcode;
+
+	@Column(name = "address", length = 100)
+	private String address;
+
 	@Column(name = "neighborhood", length = 100)
 	private String neighborhood;
+
+	@Column(name = "address_number", length = 10)
+	private String addressNumber;
 
 	@Column(name = "main_picture")
 	private String mainPicture;
 
 	@Override
 	public String toString() {
-		return "PlaceToRental [id=" + id + ", user=" + user
-				+ ", shortDescription=" + shortDescription + ", description="
-				+ description + ", price=" + price + ", priceType=" + priceType
-				+ ", city=" + city + ", neighborhood=" + neighborhood + "]";
+		return "PlaceToRental [id=" + id + ", shortDescription="
+				+ shortDescription + ", description=" + description
+				+ ", price=" + price + ", priceExpenses=" + priceExpenses
+				+ ", availablePlacesAmount=" + availablePlacesAmount
+				+ ", roomTypeAmount=" + roomTypeAmount + ", minimumStay="
+				+ minimumStay + ", priceType=" + priceType + ", city=" + city
+				+ ", neighborhood=" + neighborhood + ", mainPicture="
+				+ mainPicture + "]";
 	}
 
 	public void setPrice(BigDecimal price) {
@@ -176,5 +189,29 @@ public class PlaceToRental implements Serializable {
 
 	public void setRoomTypeAmount(Integer roomTypeAmount) {
 		this.roomTypeAmount = roomTypeAmount;
+	}
+
+	public Integer getMinimumStay() {
+		return minimumStay;
+	}
+
+	public void setMinimumStay(Integer minimumStay) {
+		this.minimumStay = minimumStay;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getAddressNumber() {
+		return addressNumber;
+	}
+
+	public void setAddressNumber(String addressNumber) {
+		this.addressNumber = addressNumber;
 	}
 }

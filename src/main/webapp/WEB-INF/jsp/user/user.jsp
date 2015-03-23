@@ -55,7 +55,7 @@
 	        <div class="rs-6colunas ultima"><input type="text" name="user.birthday" placeholder="Nascimento (dd/mm/aaa)" value="${user.formattedBirthday}"/></div>
 	        <span class="legenda">Escolha o estado e cidade onde deseja morar</span>
 	        <div class="rs-6colunas primeira">
-	          <select name="user.city.stateAbbreviation" id="estado">
+	          <select name="user.city.stateAbbreviation" id="zipcode-state">
 		        <option value="">Estado</option>
 	          	<c:forEach items="${states}" var="state">
 		            <option value="${state.abbreviation}" <c:if test="${state.abbreviation == user.city.stateAbbreviation}">selected</c:if> >${state.name}</option>
@@ -63,7 +63,7 @@
 	          </select>
 	        </div>
 	        <div class="rs-6colunas ultima">
-	          <select name="user.city.id" id="cidade">
+	          <select name="user.city.id" id="zipcode-city">
 	            <option value="">Cidade</option>
 	          	<c:forEach items="${cities}" var="city">
 	          		<option value="${city.id}" <c:if test="${user.city.id == city.id}">selected</c:if> >${city.name}</option>

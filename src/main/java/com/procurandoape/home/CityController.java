@@ -1,4 +1,4 @@
-package com.procurandoape.city;
+package com.procurandoape.home;
 
 import static br.com.caelum.vraptor.view.Results.json;
 
@@ -10,7 +10,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Result;
 
-import com.procurandoape.home.Cities;
+import com.google.common.base.Optional;
 import com.procurandoape.user.City;
 
 @Controller
@@ -32,8 +32,13 @@ public class CityController {
 
 	@Get("/city/{state}")
 	public void getCity(String state) {
-		List<City> citiesFromState = cities.getByStateAbbreviation(state);
-		result.use(json()).withoutRoot().from(citiesFromState).serialize();;
+		Optional<List<City>> citiesFromStateOptional = cities.getByStateAbbreviation(state);
+		if (citiesFromStateOptional.isPresent()) {
+			result.use(json()).withoutRoot().from(citiesFromStateOptional.get()).serialize();
+		} else {
+			result.notFound();
+		}
+
 	}
 
 }

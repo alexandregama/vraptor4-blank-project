@@ -88,22 +88,33 @@
 		        <span class="divisao"></span>
 		        <div class="legenda rs-12colunas">Diga-nos onde está localizado o imóvel onde a vaga está disponível:</div>
 		        
-		        <div class="rs-3colunas primeira"><input type="text" name="cep" placeholder="CEP"/></div>
-		        <div class="rs-7colunas"><input type="text" name="endereco" placeholder="Endereço (Ex. Rua Rocha)"/></div>
-		        <div class="rs-2colunas ultima"><input type="text" name="numero" placeholder="Nº"/></div>
+		        <div class="rs-3colunas primeira">
+		        	<input type="text" id="zipcode-value" name="placeToRenatal.zipcode" placeholder="CEP"/>
+		        </div>
+		        <div class="rs-7colunas">
+		        	<input type="text" id="zipcode-address" name="placeToRental.address" placeholder="Endereço (Ex. Rua Rocha)"/>
+		        </div>
+		        <div class="rs-2colunas ultima">
+		        	<input type="text" name="placeToRental.addressNumber" placeholder="Nº"/>
+		        </div>
+		        <div class="rs-7colunas">
+		        	<input type="text" name="placeToRental.neighborhood" placeholder="Bairro"/>
+		        </div>
 		
 		        <div class="rs-4colunas primeira">
-		          <select name="estado">
-		            <option value="0">Selecione estado</option>
-		            <option value="sp">SP</option>
-		            <option value="ba">BA</option>
+		          <select id="zipcode-state" name="placeToRental.city.stateAbbreviation">
+			        <option value="0">Selecione estado</option>
+		          	<c:forEach items="${states}" var="state">
+			            <option value="${state.abbreviation}">${state.abbreviation}</option>
+		          	</c:forEach>
 		          </select>
 		        </div>
 		        <div class="rs-8colunas ultima">
-		          <select name="cidade">
-		            <option value="0">Selecione cidade</option>
-		            <option value="sp">São Paulo</option>
-		            <option value="ba">Adamantina</option>
+		          <select id="zipcode-city" name="placeToRental.city.id">
+			        <option value="0">Selecione cidade</option>
+		          	<c:forEach items="${cities}" var="city">
+			            <option value="${city.name}">${city.name}</option>
+		          	</c:forEach>
 		          </select>
 		        </div>
 		
@@ -254,8 +265,10 @@
 
 
   <!-- Scripts -->
-  <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
-  <script src="js/main.js" type="text/javascript"></script>
+  <script src="${urlAmazonPresenter.s3AssetsUrl}/site-html/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+  <script src="${urlAmazonPresenter.s3AssetsUrl}/site-html/js/main.js" type="text/javascript"></script>
+  <script src="js/cep.js" type="text/javascript"></script>
+  <script src="js/city.js" type="text/javascript"></script>
   <!-- Fim Scripts -->
 
 </body>

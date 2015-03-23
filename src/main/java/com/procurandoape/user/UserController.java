@@ -11,6 +11,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.I18nMessage;
 import br.com.caelum.vraptor.validator.Validator;
 
+import com.google.common.base.Optional;
 import com.procurandoape.home.Cities;
 import com.procurandoape.home.HomeController;
 import com.procurandoape.login.UserSession;
@@ -59,9 +60,13 @@ public class UserController {
 		validator.addIf(users.emailAlreadyExists(user), new I18nMessage("user.email.exists", "user.signin.email.exists"));
 
 		if (validator.hasErrors()) {
-			List<City> citiesFromState = cities.getByStateAbbreviation(user.getCity().getStateAbbreviation());
+			Optional<List<City>> citiesFromStateOptional = cities.getByStateAbbreviation(user.getCity().getStateAbbreviation());
+			if (citiesFromStateOptional.isPresent()) {
+				result.include("cities", citiesFromStateOptional.get());
+			} else {
+				result.include("states", cities.getAllStates());
+			}
 			result.include("user", user);
-			result.include("cities", citiesFromState);
 		}
 		validator.onErrorRedirectTo(UserController.class).user();
 
