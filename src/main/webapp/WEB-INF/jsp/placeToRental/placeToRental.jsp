@@ -98,7 +98,7 @@
 		        	<input type="text" name="placeToRental.addressNumber" placeholder="Nº"/>
 		        </div>
 		        <div class="rs-7colunas">
-		        	<input type="text" name="placeToRental.neighborhood" placeholder="Bairro"/>
+		        	<input type="text" id="zipcode-neighborhood" name="placeToRental.neighborhood" placeholder="Bairro"/>
 		        </div>
 		
 		        <div class="rs-4colunas primeira">
