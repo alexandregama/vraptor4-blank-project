@@ -8,6 +8,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.validator.Validator;
 
 import com.procurandoape.home.Cities;
 import com.procurandoape.home.State;
@@ -28,13 +29,16 @@ public class PlaceToRentalController {
 
 	private Cities cities;
 
+	private Validator validator;
+
 	@Inject
 	public PlaceToRentalController(Result result, UserSession userSession,
-			Users users, Cities cities) {
+			Users users, Cities cities, Validator validator) {
 		this.result = result;
 		this.userSession = userSession;
 		this.users = users;
 		this.cities = cities;
+		this.validator = validator;
 	}
 
 	@Deprecated //CDI Eyes only
@@ -53,6 +57,9 @@ public class PlaceToRentalController {
 
 	@Post("/place-to-rental")
 	public void save(PlaceToRental placeToRental) {
+		validator.validate(placeToRental);
+
+		validator.onErrorRedirectTo(PlaceToRentalController.class).placeToRental();
 		System.out.println(placeToRental);
 	}
 

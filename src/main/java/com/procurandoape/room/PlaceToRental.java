@@ -85,6 +85,11 @@ public class PlaceToRental implements Serializable {
 	@Column(name = "main_picture")
 	private String mainPicture;
 
+	@Enumerated(value = EnumType.STRING)
+	@Column(name = "property_type", length = 20)
+	@ValidPropertyType
+	private PropertyType propertyType;
+
 	@Override
 	public String toString() {
 		return "PlaceToRental [id=" + id + ", shortDescription="
@@ -213,5 +218,13 @@ public class PlaceToRental implements Serializable {
 
 	public void setAddressNumber(String addressNumber) {
 		this.addressNumber = addressNumber;
+	}
+
+	public PropertyType getPropertyType() {
+		return propertyType;
+	}
+
+	public void setPropertyType(PropertyType propertyType) {
+		this.propertyType = propertyType;
 	}
 }

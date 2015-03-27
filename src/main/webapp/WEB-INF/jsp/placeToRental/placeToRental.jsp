@@ -33,6 +33,9 @@
 	          <span>Você disse que tem um espaço. Vamos criar seu anúncio agora?</span>
 	        </div>
 	
+			<c:forEach items="${errors}" var="error">
+				${error.message} <br/>
+			</c:forEach>
 			
 	        <span class="divisao"></span>
 	        <span class="legenda">Informações básicas do seu anúncio (obrigatório)</span>
@@ -122,13 +125,13 @@
 		        <div class="legenda rs-12colunas">Conte-nos um pouco sobre o imóvel</div>
 		
 		        <div class="rs-4colunas primeira">
-		          <select name="tipo-imovel">
-		            <option value="0">Tipo do imóvel</option>
-		            <option value="apartamento">Apartamento</option>
-		            <option value="casa">Casa</option>
-		            <option value="kitinete">Kitinete</option>
-		            <option value="pensionato">Pensionato</option>
-		            <option value="república">República</option>
+		          <select name="placeToRental.propertyType">
+		            <option selected value="">Tipo do imóvel</option>
+		            <option value="APARTAMENT">Apartamento</option>
+		            <option value="HOUSE">Casa</option>
+		            <option value="KITNET">Kitinete</option>
+		            <option value="HOSTEL">Pensionato</option>
+		            <option value="REPUBLIC">República</option>
 		          </select>
 		        </div>
 		        <div class="rs-4colunas ultima">
