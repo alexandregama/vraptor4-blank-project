@@ -3,6 +3,8 @@ package com.procurandoape.room;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 import javax.persistence.Column;
@@ -18,13 +20,20 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.procurandoape.converters.BooleanToStringConverterJPA;
+import com.procurandoape.converters.GenderEnumToGenderJPAConverter;
 import com.procurandoape.user.City;
+import com.procurandoape.user.Gender;
+import com.procurandoape.user.GenderOrientation;
+import com.procurandoape.user.Occupation;
 import com.procurandoape.user.User;
 import com.procurandoape.util.RoomConfig;
 
@@ -70,6 +79,10 @@ public class PlaceToRental implements Serializable {
 	@Column(name = "price_type", length = 15)
 	private PriceType priceType;
 
+	@Column(name = "available_date")
+	@Temporal(TemporalType.DATE)
+	private Calendar availableDate;
+
 	@OneToOne
 	@JoinColumn(name = "city_id")
 	private City city;
@@ -96,11 +109,11 @@ public class PlaceToRental implements Serializable {
 
 	@Column(name = "room_quantity")
 	@Min(value = 1, message = "{placetorental.roomquantity.minimum}")
-	private Integer roomQuantity = 0;
+	private Integer roomQuantity;
 
 	@Column(name = "bathroom_quantity")
 	@Min(value = 1, message = "{placetorental.bathroomquantity.minimum}")
-	private Integer bathroomQuantity = 0;
+	private Integer bathroomQuantity;
 
 	@Column(name = "advertise_situation")
 	@NotNull(message = "{placetorental.adversitesituation.empty}")
@@ -110,6 +123,56 @@ public class PlaceToRental implements Serializable {
 	@Convert(converter = BooleanToStringConverterJPA.class)
 	private Boolean acceptsSmoker;
 
+	@Column(name = "accepts_animal")
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	private Boolean acceptsAnimal;
+
+	@Column(name = "accepts_couple")
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	private Boolean acceptsCouple;
+
+	@Column(name = "accepts_children")
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	private Boolean acceptsChildren;
+
+	@Column(name = "minimum_age", length = 2, columnDefinition="char(2)")
+	@Min(value = 10, message = "{placetorental.minimumage.minvalue}")
+	private String minimumAge;
+
+	@Column(name = "maximum_age", length = 2, columnDefinition="char(2)")
+	@Max(value = 99, message = "{placetorental.maximumage.maxvalue}")
+	private String maximumAge;
+
+	@Column(name = "gender_preference")
+	@NotNull(message = "{placetorental.gender.preference.notempty}")
+	@Convert(converter = GenderEnumToGenderJPAConverter.class)
+	private Gender genderPreference;
+
+	@Column(name = "user_gender_orientation")
+	@NotNull(message = "{placetorental.gender.preference.notempty}")
+	@Convert(converter = GenderOrientationEnumToGenderOrientationJPAConverter.class)
+	private GenderOrientation userGenderOrientation;
+
+	@Column(name = "user_smokes")
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	private Boolean userSmokes;
+
+	@Column(name = "user_has_animal")
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	private Boolean userHasAnimal;
+
+	@Column(name = "user_looking_alone")
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	private Boolean userLookingAlone;
+
+	@Column(name = "user_has_kid")
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	private Boolean userHasKid;
+
+	@Column(name = "user_occupation")
+	@NotNull(message = "{placetorental.user.occupation.notempty}")
+	private Occupation userOccupation;
+
 	@Override
 	public String toString() {
 		return "PlaceToRental [id=" + id + ", shortDescription="
@@ -117,10 +180,23 @@ public class PlaceToRental implements Serializable {
 				+ ", price=" + price + ", priceExpenses=" + priceExpenses
 				+ ", availablePlacesAmount=" + availablePlacesAmount
 				+ ", roomTypeAmount=" + roomTypeAmount + ", minimumStay="
-				+ minimumStay + ", priceType=" + priceType + ", city=" + city
-				+ ", neighborhood=" + neighborhood + ", mainPicture="
-				+ mainPicture + ", propertyType=" + propertyType + ", advertiseSituation="
-				+ advertiseSituation + ", acceptsSmoker= " + acceptsSmoker + "]";
+				+ minimumStay + ", priceType=" + priceType + ", availableDate="
+				+ availableDate + ", city=" + city + ", zipcode=" + zipcode
+				+ ", address=" + address + ", neighborhood=" + neighborhood
+				+ ", addressNumber=" + addressNumber + ", mainPicture="
+				+ mainPicture + ", propertyType=" + propertyType
+				+ ", roomQuantity=" + roomQuantity + ", bathroomQuantity="
+				+ bathroomQuantity + ", advertiseSituation="
+				+ advertiseSituation + ", acceptsSmoker=" + acceptsSmoker
+				+ ", acceptsAnimal=" + acceptsAnimal + ", acceptsCouple="
+				+ acceptsCouple + ", acceptsChildren=" + acceptsChildren
+				+ ", minimumAge=" + minimumAge + ", maximumAge=" + maximumAge
+				+ ", genderPreference=" + genderPreference
+				+ ", userGenderOrientation=" + userGenderOrientation
+				+ ", userSmokes=" + userSmokes + ", userHasAnimal="
+				+ userHasAnimal + ", userLookingAlone=" + userLookingAlone
+				+ ", userHasKid=" + userHasKid + ", userOccupation="
+				+ userOccupation + "]";
 	}
 
 	public void setPrice(BigDecimal price) {
@@ -249,7 +325,7 @@ public class PlaceToRental implements Serializable {
 		this.propertyType = propertyType;
 	}
 
-	public int getRoomQuantity() {
+	public Integer getRoomQuantity() {
 		return roomQuantity;
 	}
 
@@ -271,5 +347,133 @@ public class PlaceToRental implements Serializable {
 
 	public void setAcceptsSmoker(Boolean acceptsSmoker) {
 		this.acceptsSmoker = acceptsSmoker;
+	}
+
+	public Boolean getAcceptsAnimal() {
+		return acceptsAnimal;
+	}
+
+	public void setAcceptsAnimal(Boolean acceptsAnimal) {
+		this.acceptsAnimal = acceptsAnimal;
+	}
+
+	public Boolean getAcceptsCouple() {
+		return acceptsCouple;
+	}
+
+	public void setAcceptsCouple(Boolean acceptsCouple) {
+		this.acceptsCouple = acceptsCouple;
+	}
+
+	public Boolean getAcceptsChildren() {
+		return acceptsChildren;
+	}
+
+	public void setAcceptsChildren(Boolean acceptsChildren) {
+		this.acceptsChildren = acceptsChildren;
+	}
+
+	public String getMinimumAge() {
+		return minimumAge;
+	}
+
+	public void setMinimumAge(String minimumAge) {
+		this.minimumAge = minimumAge;
+	}
+
+	public String getMaximumAge() {
+		return maximumAge;
+	}
+
+	public void setMaximumAge(String maximumAge) {
+		this.maximumAge = maximumAge;
+	}
+
+	public Gender getGenderPreference() {
+		return genderPreference;
+	}
+
+	public void setGenderPreference(Gender genderPreference) {
+		this.genderPreference = genderPreference;
+	}
+
+	public Boolean getUserSmokes() {
+		return userSmokes;
+	}
+
+	public void setUserSmokes(Boolean userSmokes) {
+		this.userSmokes = userSmokes;
+	}
+
+	public Boolean getUserHasAnimal() {
+		return userHasAnimal;
+	}
+
+	public void setUserHasAnimal(Boolean userHasAnimal) {
+		this.userHasAnimal = userHasAnimal;
+	}
+
+	public Boolean getUserLookingAlone() {
+		return userLookingAlone;
+	}
+
+	public void setUserLookingAlone(Boolean userLookingAlone) {
+		this.userLookingAlone = userLookingAlone;
+	}
+
+	public Boolean getUserHasKid() {
+		return userHasKid;
+	}
+
+	public void setUserHasKid(Boolean userHasKid) {
+		this.userHasKid = userHasKid;
+	}
+
+	public Occupation getUserOccupation() {
+		return userOccupation;
+	}
+
+	public void setUserOccupation(Occupation userOccupation) {
+		this.userOccupation = userOccupation;
+	}
+
+	public GenderOrientation getUserGenderOrientation() {
+		return userGenderOrientation;
+	}
+
+	public void setUserGenderOrientation(GenderOrientation userGenderOrientation) {
+		this.userGenderOrientation = userGenderOrientation;
+	}
+
+	public AdvertiseSituation getAdvertiseSituation() {
+		return advertiseSituation;
+	}
+
+	public void setAdvertiseSituation(AdvertiseSituation advertiseSituation) {
+		this.advertiseSituation = advertiseSituation;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Calendar getAvailableDate() {
+		return availableDate;
+	}
+
+	public void setAvailableDate(Calendar availableDate) {
+		this.availableDate = availableDate;
+	}
+
+	public String getAvailableDateFormatted() {
+		return new SimpleDateFormat("dd/MM/yyyy").format(this.availableDate.getTime());
 	}
 }

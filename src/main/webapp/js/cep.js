@@ -6,7 +6,7 @@ $(document).ready(function() {
 				console.log(zipcodeJson.zipcode.stateAbbreviation);
 				if (zipcodeJson.zipcode.stateAbbreviation != "") {
 					$('#zipcode-state option[value="' + zipcodeJson.zipcode.stateAbbreviation + '"]').prop('selected', true);
-					$('#zipcode-city').html("<option value=" + zipcodeJson.zipcode.city + ">" + zipcodeJson.zipcode.city + "</option>");
+					$('#zipcode-city').html("<option value=" + zipcodeJson.zipcode.id + ">" + zipcodeJson.zipcode.city + "</option>");
 					$('#zipcode-neighborhood').val(zipcodeJson.zipcode.neighborhood);
 				}
 			})

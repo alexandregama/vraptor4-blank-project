@@ -94,6 +94,13 @@
 			<version>1.9.5</version>
 		</dependency>
 
+		<dependency>
+			<groupId>br.com.caelum.vraptor</groupId>
+			<artifactId>vraptor-i18n</artifactId>
+			<version>4.0.1</version> <!-- or latest version -->
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

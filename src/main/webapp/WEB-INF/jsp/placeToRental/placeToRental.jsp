@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="ISO-8859-1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Cadastre-se para dividir quarto, apartamento, casa, etc...</title>
 	<link rel="stylesheet" href="css/main.css" />
   <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
@@ -22,7 +23,7 @@
     <!-- Formulário de Cadastro de Anúncio -->
 	<section id="formulario">
 	    <form action="${linkTo[PlaceToRentalController].save}" method="POST">
-	      <h1 class="linha">Bem vindo, vamos Criar seu anúncio :)</h1>
+	      <h1 class="linha">${t['placetorenta.welcome.message']}</h1>
 	      <div class="bloco-cad colunas">
 	        <div class="rs-2colunas primeira hm">
 	          <img src="${user.photo}" class="circular" width="100" alt="Ronery Souza">
@@ -30,7 +31,6 @@
 	        <div class="rs-10colunas ultima">
 	          <h4>${user.fullName} - ${user.age}</h4>
 	          <span>Bela Vista, ${user.city.name} - ${user.city.stateAbbreviation}</span>
-	          <span>Você disse que tem um espaço. Vamos criar seu anúncio agora?</span>
 	        </div>
 	
 			<c:forEach items="${errors}" var="error">
@@ -38,229 +38,239 @@
 			</c:forEach>
 			
 	        <span class="divisao"></span>
-	        <span class="legenda">Informações básicas do seu anúncio (obrigatório)</span>
+	        <span class="legenda">${t['placetorental.basic.information']}</span>
 	        
-		        <input type="text" name="placeToRental.shortDescription" placeholder="Título do seu anúncio (Ex.: Divido apartamento com quarto individual)"/>
+		        <input type="text" name="placeToRental.shortDescription" value="${placeToRental.shortDescription}" placeholder="${t['placetorental.title']}"/>
+		        <input type="text" name="placeToRental.description" value="${placeToRental.description}" placeholder="${t['placetorental.description']}"/>
 		        
-		        <div class="rs-4colunas primeira"><input type="text" name="placeToRenta.price" placeholder="Valor do aluguel (R$)"/></div>
-		        <div class="rs-4colunas"><input type="text" name="placeToRental.priceExpenses" placeholder="Outras despesas (R$)"/></div>
+		        <div class="rs-4colunas primeira">
+		        	<input type="text" name="placeToRental.price" value="${placeToRental.price}" placeholder="${t['placetorental.input.price']}"/>
+		        </div>
+		        
+		        <div class="rs-4colunas">
+		        	<input type="text" name="placeToRental.priceExpenses" value="${placeToRental.priceExpenses}" placeholder="${t['placetorental.input.price.expenses']}"/>
+		        </div>
+		        
 		        <div class="rs-4colunas legenda duas-linhas ultima">
-		        	<input type="checkbox" name="despesas-inclusas" id="despesas-inclusas" checked/>
-		        <label for="despesas-inclusas">Despesas inclusas no aluguel</label></div>
+		        	<input type="checkbox" name="despesas-inclusas" id="despesas-inclusas" />
+		        	<label for="despesas-inclusas">Despesas inclusas no aluguel</label>
+		        </div>
 		
 		        <div class="rs-6colunas primeira">
 		          <select name="placeToRental.availablePlacesAmount">
-		            <option value="0">Qtd. de vagas disponíveis</option>
-		            <option value="1">Tenho 01 vaga</option>
-		            <option value="2">Tenho 02 vagas</option>
-		            <option value="3">Tenho 03 vagas</option>
-		            <option value="4">Tenho 04 vagas</option>
-		            <option value="4">Tenho 05 vagas</option>
-		            <option value="4">Tenho 06 vagas</option>
+		            <option value="">${t['placetorental.select.availableplaces']}</option>
+		            <option value="1" <c:if test="${placeToRental.availablePlacesAmount == 1}">selected="selected"</c:if> >Tenho 01 vaga</option>
+		            <option value="2" <c:if test="${placeToRental.availablePlacesAmount == 2}">selected="selected"</c:if> >Tenho 02 vagas</option>
+		            <option value="3" <c:if test="${placeToRental.availablePlacesAmount == 3}">selected="selected"</c:if> >Tenho 03 vagas</option>
+		            <option value="4" <c:if test="${placeToRental.availablePlacesAmount == 4}">selected="selected"</c:if> >Tenho 04 vagas</option>
+		            <option value="5" <c:if test="${placeToRental.availablePlacesAmount == 5}">selected="selected"</c:if> >Tenho 05 vagas</option>
+		            <option value="6" <c:if test="${placeToRental.availablePlacesAmount == 6}">selected="selected"</c:if> >Tenho 06 vagas</option>
 		          </select>
 		        </div>
 		        <div class="rs-6colunas ultima">
 		          <select name="placeToRental.roomTypeAmount">
 		            <option value="0">Tipo do quarto</option>
-		            <option value="1">Individual</option>
-		            <option value="2">Para 02 pessoas</option>
-		            <option value="3">Para 03 pessoas</option>
-		            <option value="4">Para 04 pessoas</option>
-		            <option value="4">Para 05 pessoas</option>
-		            <option value="4">Para 06 pessoas</option>
+		            <option value="1" <c:if test="${placeToRental.roomTypeAmount == 1}">selected="selected"</c:if> >Individual</option>
+		            <option value="2" <c:if test="${placeToRental.roomTypeAmount == 2}">selected="selected"</c:if> >Para 02 pessoas</option>
+		            <option value="3" <c:if test="${placeToRental.roomTypeAmount == 3}">selected="selected"</c:if> >Para 03 pessoas</option>
+		            <option value="4" <c:if test="${placeToRental.roomTypeAmount == 4}">selected="selected"</c:if> >Para 04 pessoas</option>
+		            <option value="5" <c:if test="${placeToRental.roomTypeAmount == 5}">selected="selected"</c:if> >Para 05 pessoas</option>
+		            <option value="6" <c:if test="${placeToRental.roomTypeAmount == 6}">selected="selected"</c:if> >Para 06 pessoas</option>
 		          </select>
 		        </div>
 		
 		        <div class="rs-6colunas primeira">
-		          <input type="text" name="data-disponibilidade" placeholder="Data disponibilidade (dd/mm/aaa)"/>
+		          <input type="text" name="placeToRental.availableDate" value="${placeToRental.availableDate}" placeholder="Data disponibilidade (dd/mm/aaa)"/>
 		        </div>
 		        <div class="rs-6colunas ultima">
 		          <select name="placeToRental.minimumStay">
-		            <option value="0">Estadia mínima</option>
-		            <option value="0">Indiferente</option>
-		            <option value="1">01 mês</option>
-		            <option value="2">02 meses</option>
-		            <option value="3">03 meses</option>
-		            <option value="4">04 meses</option>
-		            <option value="5">05 meses</option>
-		            <option value="6">06 meses</option>
-		            <option value="12+">12 meses ou +</option>
+		            <option value="">${t['placetorental.select.minimumstay']}</option>
+		            <option value="0" <c:if test="${placeToRental.minimumStay == 6}">selected="selected"</c:if> >Indiferente</option>
+		            <option value="1" <c:if test="${placeToRental.minimumStay == 1}">selected="selected"</c:if> >${t['placetorental.option.month'].count(1)}</option>
+		            <option value="2" <c:if test="${placeToRental.minimumStay == 2}">selected="selected"</c:if> >${t['placetorental.option.month'].count(2)}</option>
+		            <option value="3" <c:if test="${placeToRental.minimumStay == 3}">selected="selected"</c:if> >${t['placetorental.option.month'].count(3)}</option>
+		            <option value="4" <c:if test="${placeToRental.minimumStay == 4}">selected="selected"</c:if> >${t['placetorental.option.month'].count(4)}</option>
+		            <option value="5" <c:if test="${placeToRental.minimumStay == 5}">selected="selected"</c:if> >${t['placetorental.option.month'].count(5)}</option>
+		            <option value="6" <c:if test="${placeToRental.minimumStay == 6}">selected="selected"</c:if> >${t['placetorental.option.month'].count(6)}</option>
+		            <option value="12" <c:if test="${placeToRental.minimumStay == 12}">selected="selected"</c:if> >${t['placetorental.option.month.twelve']}</option>
 		          </select>
 		        </div>
 		
 		        <span class="divisao"></span>
-		        <div class="legenda rs-12colunas">Diga-nos onde está localizado o imóvel onde a vaga está disponível:</div>
+		        <div class="legenda rs-12colunas">${t['placetorental.legend.location']}</div>
 		        
 		        <div class="rs-3colunas primeira">
-		        	<input type="text" id="zipcode-value" name="placeToRenatal.zipcode" placeholder="CEP"/>
+		        	<input type="text" id="zipcode-value" name="placeToRental.zipcode" value="${placeToRental.zipcode}" placeholder="CEP"/>
 		        </div>
 		        <div class="rs-7colunas">
-		        	<input type="text" id="zipcode-address" name="placeToRental.address" placeholder="Endereço (Ex. Rua Rocha)"/>
+		        	<input type="text" id="zipcode-address" name="placeToRental.address" value="${placeToRental.address}" placeholder="${t['placetorental.input.address']}"/>
 		        </div>
 		        <div class="rs-2colunas ultima">
-		        	<input type="text" name="placeToRental.addressNumber" placeholder="Nº"/>
+		        	<input type="text" name="placeToRental.addressNumber" value="${placeToRental.addressNumber}" placeholder="Nº"/>
 		        </div>
 		        <div class="rs-7colunas">
-		        	<input type="text" id="zipcode-neighborhood" name="placeToRental.neighborhood" placeholder="Bairro"/>
+		        	<input type="text" id="zipcode-neighborhood" name="placeToRental.neighborhood" value="${placeToRental.neighborhood}" placeholder="Bairro"/>
 		        </div>
 		
 		        <div class="rs-4colunas primeira">
 		          <select id="zipcode-state" name="placeToRental.city.stateAbbreviation">
 			        <option value="0">Selecione estado</option>
 		          	<c:forEach items="${states}" var="state">
-			            <option value="${state.abbreviation}">${state.abbreviation}</option>
+			            <option value="${state.abbreviation}" <c:if test="${placeToRental.city.stateAbbreviation == state.abbreviation}">selected="selected"</c:if> >${state.abbreviation}</option>
 		          	</c:forEach>
 		          </select>
 		        </div>
 		        <div class="rs-8colunas ultima">
+		         ${placeToRental.city.name}
 		          <select id="zipcode-city" name="placeToRental.city.id">
 			        <option value="0">Selecione cidade</option>
 		          	<c:forEach items="${cities}" var="city">
-			            <option value="${city.name}">${city.name}</option>
+			            <option value="${city.id}" <c:if test="${placeToRental.city.id == city.id}">selected="selected"</c:if> >${city.name}</option>
 		          	</c:forEach>
 		          </select>
 		        </div>
 		
 		        <span class="divisao"></span>
-		        <div class="legenda rs-12colunas">Conte-nos um pouco sobre o imóvel</div>
+		        <div class="legenda rs-12colunas">${t['placetorental.legend.about.local']}</div>
 		
 		        <div class="rs-4colunas primeira">
 		          <select name="placeToRental.propertyType">
-		            <option selected value="">Tipo do imóvel</option>
-		            <option value="APARTAMENT">Apartamento</option>
-		            <option value="HOUSE">Casa</option>
-		            <option value="KITNET">Kitinete</option>
-		            <option value="HOSTEL">Pensionato</option>
-		            <option value="REPUBLIC">República</option>
+		            <option selected value="">${t['placetorental.select.propertytype']}</option>
+		            <option value="APARTAMENT" <c:if test="${placeToRental.propertyType == 'APARTAMENT'}">selected="selected"</c:if> >Apartamento</option>
+		            <option value="HOUSE"    <c:if test="${placeToRental.propertyType == 'HOUSE'}">selected="selected"</c:if> >Casa</option>
+		            <option value="KITNET"   <c:if test="${placeToRental.propertyType == 'KITNET'}">selected="selected"</c:if> >Kitinete</option>
+		            <option value="HOSTEL"   <c:if test="${placeToRental.propertyType == 'HOSTEL'}">selected="selected"</c:if> >Pensionato</option>
+		            <option value="REPUBLIC" <c:if test="${placeToRental.propertyType == 'REPUBLIC'}">selected="selected"</c:if> >${t['placetorental.property.type.republic']}</option>
 		          </select>
 		        </div>
 		        <div class="rs-4colunas ultima">
 		          <select name="placeToRental.roomQuantity">
-		            <option value="0">Qtd. de quartos</option>
-		            <option value="1">01 quarto</option>
-		            <option value="2">02 quartos</option>
-		            <option value="3">03 quartos</option>
-		            <option value="4">04 quartos</option>
-		            <option value="5">05 quartos</option>
-		            <option value="6">06 quartos</option>
-		            <option value="7">07 quartos</option>
-		            <option value="8">08 quartos</option>
+		            <option value="">Qtd. de quartos</option>
+		            <option value="1" <c:if test="${placeToRental.roomQuantity == 1}">selected="selected"</c:if> >01 quarto</option>
+		            <option value="2" <c:if test="${placeToRental.roomQuantity == 2}">selected="selected"</c:if> >02 quartos</option>
+		            <option value="3" <c:if test="${placeToRental.roomQuantity == 3}">selected="selected"</c:if> >03 quartos</option>
+		            <option value="4" <c:if test="${placeToRental.roomQuantity == 4}">selected="selected"</c:if> >04 quartos</option>
+		            <option value="5" <c:if test="${placeToRental.roomQuantity == 5}">selected="selected"</c:if> >05 quartos</option>
+		            <option value="6" <c:if test="${placeToRental.roomQuantity == 6}">selected="selected"</c:if> >06 quartos</option>
+		            <option value="7" <c:if test="${placeToRental.roomQuantity == 7}">selected="selected"</c:if> >07 quartos</option>
+		            <option value="8" <c:if test="${placeToRental.roomQuantity == 8}">selected="selected"</c:if> >08 quartos</option>
 		          </select>
 		        </div>
 		        <div class="rs-4colunas ultima">
 		          <select name="placeToRental.bathroomQuantity">
-		            <option value="0">Qtd. de banheiros</option>
-		            <option value="1">01 banheiro</option>
-		            <option value="2">02 banheiros</option>
-		            <option value="3">03 banheiros</option>
-		            <option value="4">04 banheiros</option>
-		            <option value="5">05 banheiros</option>
-		            <option value="6">06 banheiros</option>
-		            <option value="7">07 banheiros</option>
-		            <option value="8">08 banheiros</option>
+		            <option value="0" <c:if test="${placeToRental.bathroomQuantity == 0}">selected="selected"</c:if> >Qtd. de banheiros</option>
+		            <option value="1" <c:if test="${placeToRental.bathroomQuantity == 1}">selected="selected"</c:if> >01 banheiro</option>
+		            <option value="2" <c:if test="${placeToRental.bathroomQuantity == 2}">selected="selected"</c:if> >02 banheiros</option>
+		            <option value="3" <c:if test="${placeToRental.bathroomQuantity == 3}">selected="selected"</c:if> >03 banheiros</option>
+		            <option value="4" <c:if test="${placeToRental.bathroomQuantity == 4}">selected="selected"</c:if> >04 banheiros</option>
+		            <option value="5" <c:if test="${placeToRental.bathroomQuantity == 5}">selected="selected"</c:if> >05 banheiros</option>
+		            <option value="6" <c:if test="${placeToRental.bathroomQuantity == 6}">selected="selected"</c:if> >06 banheiros</option>
+		            <option value="7" <c:if test="${placeToRental.bathroomQuantity == 7}">selected="selected"</c:if> >07 banheiros</option>
+		            <option value="8" <c:if test="${placeToRental.bathroomQuantity == 8}">selected="selected"</c:if> >08 banheiros</option>
 		          </select>
 		        </div>
 		
 		        <select name="placeToRental.advertiseSituation">
-		          <option value="" selected>Em qual situação você se encaixa? (Selecione)</option>
-		          <option value="RENTER_LIVING">Sou locatário e moro no imóvel</option>
-		          <option value="RENTER_NOT_LIVING">Sou locatário e não moro no imóvel</option>
-		          <option value="OWNER_LIVING">Sou dono e moro no imóvel</option>
-		          <option value="OWNER_NOT_LIVING">Sou dono e não moro no imóvel</option>
+		          <option value="" selected>${t['placetorental.select.advertise.situation']}</option>
+		          <option value="RENTER_LIVING" <c:if test="${placeToRental.advertiseSituation == 'RENTER_LIVING'}">selected="selected"</c:if> >${t['placetorental.advertise.situation.renter.living']}</option>
+		          <option value="RENTER_NOT_LIVING" <c:if test="${placeToRental.advertiseSituation == 'RENTER_NOT_LIVING'}">selected="selected"</c:if> >${t['placetorental.advertise.situation.renter.notliving']}</option>
+		          <option value="OWNER_LIVING" <c:if test="${placeToRental.advertiseSituation == 'OWNER_LIVING'}">selected="selected"</c:if> >${t['placetorental.advertise.situation.owner.living']}</option>
+		          <option value="OWNER_NOT_LIVING" <c:if test="${placeToRental.advertiseSituation == 'OWNER_NOT_LIVING'}">selected="selected"</c:if> >${t['placetorental.advertise.situation.owner.notliving']}</option>
 		        </select>
 		
 		        <span class="divisao"></span>
-		        <div class="rs-12colunas legenda">Quais suas preferências de companhia?</div>
+		        <div class="rs-12colunas legenda">${t['placetorental.legend.preferences']}</div>
 		
 		        <div class="rs-3colunas primeira">
 		          <strong class="line">Aceita fumantes?</strong>
-		          <input type="radio" name="placeToRental.acceptsSmoker" value="Y" id="pref-fumante-sim"/> <label for="pref-fumante-sim">Sim</label>
-		          <input type="radio" name="placeToRental.acceptsSmoker" value="N" id="pref-fumante-nao"/> <label for="pref-fumante-nao">Não</label>
+		          <input type="radio" name="placeToRental.acceptsSmoker" value="Y" id="pref-fumante-sim" <c:if test="${placeToRental.acceptsSmoker}">checked="checked"</c:if> /> <label for="pref-fumante-sim">Sim</label>
+		          <input type="radio" name="placeToRental.acceptsSmoker" value="N" id="pref-fumante-nao" <c:if test="${not placeToRental.acceptsSmoker}">checked="checked"</c:if> /> <label for="pref-fumante-nao">${t['text.no']}</label>
 		        </div>
 		        <div class="rs-3colunas">
 		          <strong class="line">Aceita animais?</strong>
-		          <input type="radio" name="preferencia-animais" value="S" id="pref-animais-sim"/> <label for="pref-animais-sim">Sim</label>
-		          <input type="radio" name="preferencia-animais" value="N" id="pref-animais-nao"/> <label for="pref-animais-nao">Não</label>
+		          <input type="radio" name="placeToRental.acceptsAnimal" value="Y" id="pref-animais-sim" <c:if test="${placeToRental.acceptsAnimal}">checked="checked"</c:if> /> <label for="pref-animais-sim">Sim</label>
+		          <input type="radio" name="placeToRental.acceptsAnimal" value="N" id="pref-animais-nao" <c:if test="${not placeToRental.acceptsAnimal}">checked="checked"</c:if> /> <label for="pref-animais-nao">${t['text.no']}</label>
 		        </div>
 		        <div class="rs-3colunas">
 		          <strong class="line">Aceita casais?</strong>
-		          <input type="radio" name="preferencia-casais" value="Sim" id="pref-casais-sim"/> <label for="pref-casais-sim">Sim</label>
-		          <input type="radio" name="preferencia-casais" value="Não" id="pref-casais-nao"/> <label for="pref-casais-nao">Não</label>
+		          <input type="radio" name="placeToRental.acceptsCouple" value="Y" id="pref-casais-sim" <c:if test="${placeToRental.acceptsCouple}">checked="checked"</c:if> /> <label for="pref-casais-sim">Sim</label>
+		          <input type="radio" name="placeToRental.acceptsCouple" value="N" id="pref-casais-nao" <c:if test="${not placeToRental.acceptsCouple}">checked="checked"</c:if> /> <label for="pref-casais-nao">${t['text.no']}</label>
 		        </div>
 		        <div class="rs-3colunas ultima">
-		          <strong class="line">Aceita criancas?</strong>
-		          <input type="radio" name="preferencia-criancas" value="Sim" id="pref-criancas-sim"/> <label for="pref-criancas-sim">Sim</label>
-		          <input type="radio" name="preferencia-criancas" value="Não" id="pref-criancas-nao"/> <label for="pref-criancas-nao">Não</label>
+		          <strong class="line">${t['placetorental.input.accepts.kid']}</strong>
+		          <input type="radio" name="placeToRental.acceptsChildren" value="Y" id="pref-criancas-sim" <c:if test="${placeToRental.acceptsChildren}">checked="checked"</c:if> /> <label for="pref-criancas-sim">Sim</label>
+		          <input type="radio" name="placeToRental.acceptsChildren" value="N" id="pref-criancas-nao" <c:if test="${not placeToRental.acceptsChildren}">checked="checked"</c:if> /> <label for="pref-criancas-nao">${t['text.no']}</label>
 		        </div>
 		
 		        <div class="rs-3colunas primeira">
-		          <input type="text" name="idade-minima" placeholder="Idade mín. (18)"/>
+		          <input type="text" name="placeToRental.minimumAge" value="${placeToRental.minimumAge}" placeholder="${t['placetorental.input.minimumage']}"/>
 		        </div>
 		        <div class="rs-3colunas">
-		          <input type="text" name="idade-maxima" placeholder="Idade máx. (99)"/>
+		          <input type="text" name="placeToRental.maximumAge" value="${placeToRental.maximumAge}" placeholder="${t['placetorental.input.maximumage']}"/>
 		        </div>
 		        <div class="rs-3colunas">
-		          <select name="pref-sexo">
-		            <option value="0">Sexo</option>
-		            <option value="masculino">Masculino</option>
-		            <option value="feminino">Feminino</option>
-		            <option value="outro">Outro</option>
+		          <select name="placeToRental.genderPreference">
+		            <option value="0" selected="selected">Sexo</option>
+		            <option value="MALE">Masculino</option>
+		            <option value="FEMALE">Feminino</option>
+		            <option value="OTHER">Outro</option>
 		          </select>
 		        </div>
 		        <div class="rs-3colunas ultima">
 		          <select name="pref-orientacao">
-		            <option value="0">Orientação  </option>
-		            <option value="bissexual">Bissexual</option>
-		            <option value="gay">Gay</option>
-		            <option value="heterossexual">Heterossexual</option>
+		            <option value="" selected="selected">${t['placetorental.select.gender.orientation']}Orientação</option>
+		            <option value="BISSEXUAL">Bissexual</option>
+		            <option value="GAY">Gay</option>
+		            <option value="HETEROSEXUAL">Heterossexual</option>
 		          </select>
 		        </div>
 		
 		        <span class="divisao"></span>
-		        <div class="rs-12colunas legenda">Conte-nos um pouco mais sobre você :)</div>
+		        <div class="rs-12colunas legenda">${t['placetorental.legend.user.information']}</div>
 		
 		        <div class="rs-3colunas primeira">
-		          <strong class="line">Você fuma?</strong>
-		          <input type="radio" name="eu-fumante" value="Sim" id="eu-fumante-sim"/> <label for="eu-fumante-sim">Sim</label>
-		          <input type="radio" name="eu-fumante" value="Não" id="eu-fumante-nao"/> <label for="eu-fumante-nao">Não</label>
+		          <strong class="line">${t['placetorental.input.user.smoke']}</strong>
+		          <input type="radio" name="placeToRental.userSmokes" value="Y" id="eu-fumante-sim" <c:if test="${placeToRental.userSmokes}">checked="checked"</c:if> /> <label for="eu-fumante-sim">Sim</label>
+		          <input type="radio" name="placeToRental.userSmokes" value="N" id="eu-fumante-nao" <c:if test="${not placeToRental.userSmokes}">checked="checked"</c:if>  /> <label for="eu-fumante-nao">${t['text.no']}</label>
 		        </div>
 		        <div class="rs-3colunas">
 		          <strong class="line">Tem animal(is)?</strong>
-		          <input type="radio" name="eu-animais" value="Sim" id="eu-animais-sim"/> <label for="eu-animais-sim">Sim</label>
-		          <input type="radio" name="eu-animais" value="Não" id="eu-animais-nao"/> <label for="eu-animais-nao">Não</label>
+		          <input type="radio" name="placeToRental.userHasAnimal" value="Y" id="eu-animais-sim" <c:if test="${placeToRental.userHasAnimal}">checked="checked"</c:if> /> <label for="eu-animais-sim">Sim</label>
+		          <input type="radio" name="placeToRental.userHasAnimal" value="N" id="eu-animais-nao" <c:if test="${not placeToRental.userHasAnimal}">checked="checked"</c:if> /> <label for="eu-animais-nao">${t['text.no']}</label>
 		        </div>
 		        <div class="rs-3colunas">
-		          <strong class="line">Procura vaga só?</strong>
-		          <input type="radio" name="eu-casais" value="Sim" id="eu-casais-sim"/> <label for="eu-casais-sim">Sim</label>
-		          <input type="radio" name="eu-casais" value="Não" id="eu-casais-nao"/> <label for="eu-casais-nao">Não</label>
+		          <strong class="line">${t['placetorental.input.user.looking']}</strong>
+		          <input type="radio" name="placeToRental.userLookingAlone" value="Y" id="eu-casais-sim" <c:if test="${placeToRental.userLookingAlone}">checked="checked"</c:if> /> <label for="eu-casais-sim">Sim</label>
+		          <input type="radio" name="placeToRental.userLookingAlone" value="N" id="eu-casais-nao" <c:if test="${not placeToRental.userLookingAlone}">checked="checked"</c:if> /> <label for="eu-casais-nao">${t['text.no']}</label>
 		        </div>
 		        <div class="rs-3colunas ultima">
-		          <strong class="line">Tem crianca(s)?</strong>
-		          <input type="radio" name="eu-criancas" value="Sim" id="eu-criancas-sim"/> <label for="eu-criancas-sim">Sim</label>
-		          <input type="radio" name="eu-criancas" value="Não" id="eu-criancas-nao"/> <label for="eu-criancas-nao">Não</label>
+		          <strong class="line">${t['placetorental.input.user.haskid']}</strong>
+		          <input type="radio" name="placeToRental.userHasKid" value="Y" id="eu-criancas-sim" <c:if test="${placeToRental.userHasKid}">checked="checked"</c:if> /> <label for="eu-criancas-sim">Sim</label>
+		          <input type="radio" name="placeToRental.userHasKid" value="N" id="eu-criancas-nao" <c:if test="${not placeToRental.userHasKid}">checked="checked"</c:if> /> <label for="eu-criancas-nao">${t['text.no']}</label>
 		        </div>
 		
 		        <div class="rs-6colunas primeira">
-		          <select name="minha-orientacao">
-		            <option value="0">Sua orientação</option>
-		            <option value="bissexual">Bissexual</option>
-		            <option value="gay">Gay</option>
-		            <option value="heterossexual">Heterossexual</option>
+		          <select name="placeToRental.userGenderOrientation">
+		            <option value="">${t['placetorental.input.user.gender.orientation']}</option>
+		            <option value="BISSEXUAL" <c:if test="${placeToRental.userGenderOrientation == 'BISSEXUAL'}">selected="selected"</c:if> >Bissexual</option>
+		            <option value="GAY" <c:if test="${placeToRental.userGenderOrientation == 'GAY'}">selected="selected"</c:if> >Gay</option>
+		            <option value="HETEROSEXUAL" <c:if test="${placeToRental.userGenderOrientation == 'HETEROSEXUAL'}">selected="selected"</c:if> >Heterossexual</option>
 		          </select>
 		        </div>
 		        <div class="rs-6colunas ultima">
-		          <select name="minha-ocupacao">
-		            <option value="0">Sua ocupação?</option>
-		            <option value="trabalho">Trabalho</option>
-		            <option value="estudo">Estudo</option>
-		            <option value="trabalho-estudo">Trabalho e estudo</option>
+		          <select name="placeToRental.userOccupation">
+		            <option value="">${t['placetorental.input.user.occupation']}</option>
+		            <option value="WORKER" <c:if test="${placeToRental.userOccupation == 'WORKER'}">selected="selected"</c:if> >Trabalho</option>
+		            <option value="STUDENT" <c:if test="${placeToRental.userOccupation == 'STUDENT'}">selected="selected"</c:if> >Estudo</option>
+		            <option value="WORKER_STUDENT" <c:if test="${placeToRental.userOccupation == 'WORKER_STUDENT'}">selected="selected"</c:if> >Trabalho e estudo</option>
+		            <option value="UNEMPLOYED" <c:if test="${placeToRental.userOccupation == 'UNEMPLOYED'}">selected="selected"</c:if> >Desempregado</option>
 		          </select>
 		        </div>
 	
 	        <span class="divisao"></span>
 	
 	        <div class="rs-6colunas primeira legenda rs-2linhas">
-	          Ao se cadastrar você concorda com os <a href="/termos-de-uso">Termos de Uso</a> e nossa <a href="/politica-privacidade">Política de Privacidade</a>.
+	          ${t['placetorental.privacy.politic']}
 	        </div>
 	        <div class="rs-6colunas ultima">
 	          <input type="submit" class="rs-botao laranja full" value="Finalizar Cadastro"></input>

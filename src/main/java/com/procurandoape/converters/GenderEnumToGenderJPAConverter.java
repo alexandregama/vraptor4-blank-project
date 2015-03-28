@@ -16,7 +16,12 @@ public class GenderEnumToGenderJPAConverter implements AttributeConverter<Gender
 		if (dbData.equals("M")) {
 			return Gender.MALE;
 		}
-		return Gender.FEMALE;
+		else if (dbData.equals("F")) {
+			return Gender.FEMALE;
+		}
+		else {
+			return Gender.OTHER;
+		}
 	}
 
 }
