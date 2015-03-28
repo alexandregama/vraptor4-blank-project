@@ -6,6 +6,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,9 +18,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.procurandoape.converters.BooleanToStringConverterJPA;
 import com.procurandoape.user.City;
 import com.procurandoape.user.User;
 import com.procurandoape.util.RoomConfig;
@@ -39,11 +43,11 @@ public class PlaceToRental implements Serializable {
 	private User user;
 
 	@Column(name = "short_description", nullable = false, length = 255)
-	@NotBlank
+	@NotBlank(message = "{placetorental.shortdescription.empty}")
 	private String shortDescription;
 
 	@Column(name = "description", nullable = false)
-	@NotBlank
+	@NotBlank(message = "{placetorental.description.empty}")
 	@Lob
 	private String description;
 
@@ -90,6 +94,22 @@ public class PlaceToRental implements Serializable {
 	@ValidPropertyType
 	private PropertyType propertyType;
 
+	@Column(name = "room_quantity")
+	@Min(value = 1, message = "{placetorental.roomquantity.minimum}")
+	private Integer roomQuantity = 0;
+
+	@Column(name = "bathroom_quantity")
+	@Min(value = 1, message = "{placetorental.bathroomquantity.minimum}")
+	private Integer bathroomQuantity = 0;
+
+	@Column(name = "advertise_situation")
+	@NotNull(message = "{placetorental.adversitesituation.empty}")
+	private AdvertiseSituation advertiseSituation;
+
+	@Column(name = "accepts_smoker")
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	private Boolean acceptsSmoker;
+
 	@Override
 	public String toString() {
 		return "PlaceToRental [id=" + id + ", shortDescription="
@@ -99,7 +119,8 @@ public class PlaceToRental implements Serializable {
 				+ ", roomTypeAmount=" + roomTypeAmount + ", minimumStay="
 				+ minimumStay + ", priceType=" + priceType + ", city=" + city
 				+ ", neighborhood=" + neighborhood + ", mainPicture="
-				+ mainPicture + "]";
+				+ mainPicture + ", propertyType=" + propertyType + ", advertiseSituation="
+				+ advertiseSituation + ", acceptsSmoker= " + acceptsSmoker + "]";
 	}
 
 	public void setPrice(BigDecimal price) {
@@ -226,5 +247,29 @@ public class PlaceToRental implements Serializable {
 
 	public void setPropertyType(PropertyType propertyType) {
 		this.propertyType = propertyType;
+	}
+
+	public int getRoomQuantity() {
+		return roomQuantity;
+	}
+
+	public void setRoomQuantity(Integer roomQuantity) {
+		this.roomQuantity = roomQuantity;
+	}
+
+	public Integer getBathroomQuantity() {
+		return bathroomQuantity;
+	}
+
+	public void setBathroomQuantity(int bathroomQuantity) {
+		this.bathroomQuantity = bathroomQuantity;
+	}
+
+	public Boolean getAcceptsSmoker() {
+		return acceptsSmoker;
+	}
+
+	public void setAcceptsSmoker(Boolean acceptsSmoker) {
+		this.acceptsSmoker = acceptsSmoker;
 	}
 }

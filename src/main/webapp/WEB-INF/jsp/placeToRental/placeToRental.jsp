@@ -135,29 +135,38 @@
 		          </select>
 		        </div>
 		        <div class="rs-4colunas ultima">
-		          <select name="qtd-quartos">
+		          <select name="placeToRental.roomQuantity">
 		            <option value="0">Qtd. de quartos</option>
 		            <option value="1">01 quarto</option>
 		            <option value="2">02 quartos</option>
 		            <option value="3">03 quartos</option>
 		            <option value="4">04 quartos</option>
+		            <option value="5">05 quartos</option>
+		            <option value="6">06 quartos</option>
+		            <option value="7">07 quartos</option>
+		            <option value="8">08 quartos</option>
 		          </select>
 		        </div>
 		        <div class="rs-4colunas ultima">
-		          <select name="qtd-banheiros">
+		          <select name="placeToRental.bathroomQuantity">
 		            <option value="0">Qtd. de banheiros</option>
 		            <option value="1">01 banheiro</option>
 		            <option value="2">02 banheiros</option>
 		            <option value="3">03 banheiros</option>
 		            <option value="4">04 banheiros</option>
+		            <option value="5">05 banheiros</option>
+		            <option value="6">06 banheiros</option>
+		            <option value="7">07 banheiros</option>
+		            <option value="8">08 banheiros</option>
 		          </select>
 		        </div>
 		
-		        <select name="situacao-moradia-anunciante">
-		          <option value="0">Em qual situação você se encaixa? (Selecione)</option>
-		          <option value="locatario-mora">Sou locatário e moro no imóvel</option>
-		          <option value="dono-mora">Sou dono e moro no imóvel</option>
-		          <option value="dono-nao-mora">Sou dono e não moro no imóvel</option>
+		        <select name="placeToRental.advertiseSituation">
+		          <option value="" selected>Em qual situação você se encaixa? (Selecione)</option>
+		          <option value="RENTER_LIVING">Sou locatário e moro no imóvel</option>
+		          <option value="RENTER_NOT_LIVING">Sou locatário e não moro no imóvel</option>
+		          <option value="OWNER_LIVING">Sou dono e moro no imóvel</option>
+		          <option value="OWNER_NOT_LIVING">Sou dono e não moro no imóvel</option>
 		        </select>
 		
 		        <span class="divisao"></span>
@@ -165,13 +174,13 @@
 		
 		        <div class="rs-3colunas primeira">
 		          <strong class="line">Aceita fumantes?</strong>
-		          <input type="radio" name="preferencia-fumante" value="Sim" id="pref-fumante-sim"/> <label for="pref-fumante-sim">Sim</label>
-		          <input type="radio" name="preferencia-fumante" value="Não" id="pref-fumante-nao"/> <label for="pref-fumante-nao">Não</label>
+		          <input type="radio" name="placeToRental.acceptsSmoker" value="Y" id="pref-fumante-sim"/> <label for="pref-fumante-sim">Sim</label>
+		          <input type="radio" name="placeToRental.acceptsSmoker" value="N" id="pref-fumante-nao"/> <label for="pref-fumante-nao">Não</label>
 		        </div>
 		        <div class="rs-3colunas">
 		          <strong class="line">Aceita animais?</strong>
-		          <input type="radio" name="preferencia-animais" value="Sim" id="pref-animais-sim"/> <label for="pref-animais-sim">Sim</label>
-		          <input type="radio" name="preferencia-animais" value="Não" id="pref-animais-nao"/> <label for="pref-animais-nao">Não</label>
+		          <input type="radio" name="preferencia-animais" value="S" id="pref-animais-sim"/> <label for="pref-animais-sim">Sim</label>
+		          <input type="radio" name="preferencia-animais" value="N" id="pref-animais-nao"/> <label for="pref-animais-nao">Não</label>
 		        </div>
 		        <div class="rs-3colunas">
 		          <strong class="line">Aceita casais?</strong>
