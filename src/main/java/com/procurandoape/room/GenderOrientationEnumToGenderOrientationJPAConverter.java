@@ -22,7 +22,10 @@ public class GenderOrientationEnumToGenderOrientationJPAConverter implements Att
 
 	@Override
 	public GenderOrientation convertToEntityAttribute(String dbData) {
-		if (dbData.equals("B")) {
+		if (dbData == null || dbData.isEmpty()) {
+			return null;
+		}
+		else if (dbData.equals("B")) {
 			return GenderOrientation.BISSEXUAL;
 		}
 		else if (dbData.equals("H")) {
