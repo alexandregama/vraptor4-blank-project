@@ -32,9 +32,12 @@
 	          <h4>${user.fullName} - ${user.age}</h4>
 	          <span>Bela Vista, ${user.city.name} - ${user.city.stateAbbreviation}</span>
 	        </div>
-	
+
+			<!-- Terrible. Change it as soon as possible -->	
 			<c:forEach items="${errors}" var="error">
-				${error.message} <br/>
+				<c:if test="${error.category == 'bathroomQuantity'}">
+					${error.message}
+				</c:if>
 			</c:forEach>
 			
 	        <span class="divisao"></span>

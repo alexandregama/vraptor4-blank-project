@@ -59,6 +59,7 @@ public class PlaceToRentalController {
 
 	@Post("/place-to-rental")
 	public void save(PlaceToRental placeToRental) {
+		System.out.println(placeToRental);
 		validator.validate(placeToRental);
 
 		if (validator.hasErrors()) {
