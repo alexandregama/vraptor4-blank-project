@@ -9,9 +9,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Cadastre-se para dividir quarto, apartamento, casa, etc...</title>
 	<link rel="stylesheet" href="css/main.css" />
-  <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+  	<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
+
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+	<script src="js/maps.js" type="text/javascript"></script>	
+	  	
 </head>
-<body>
+<body onload="initialize()">
 
   <!-- Header -->
   	<c:import url="../header.jsp"></c:import>
@@ -102,19 +106,30 @@
 		        <span class="divisao"></span>
 		        <div class="legenda rs-12colunas">${t['placetorental.legend.location']}</div>
 		        
-		        <div class="rs-3colunas primeira">
-		        	<input type="text" id="zipcode-value" name="placeToRental.zipcode" value="${placeToRental.zipcode}" placeholder="CEP"/>
-		        </div>
+        	    <div id="locationField">
+			      <input id="autocomplete" placeholder="${t['placetorental.address.placeholder.text']}" onFocus="geolocate()" type="text"></input>
+			    </div>		        
 		        <div class="rs-7colunas">
-		        	<input type="text" id="zipcode-address" name="placeToRental.address" value="${placeToRental.address}" placeholder="${t['placetorental.input.address']}"/>
+		        	<input type="hidden" id="route" name="placeToRental.address" value="${placeToRental.address}" placeholder="${t['placetorental.input.address']}"/>
+		        </div>
+		        <div class="rs-3colunas primeira">
+		        	<input type="text" id="postal_code" name="placeToRental.zipcode" value="${placeToRental.zipcode}" placeholder="CEP"/>
 		        </div>
 		        <div class="rs-2colunas ultima">
-		        	<input type="text" name="placeToRental.addressNumber" value="${placeToRental.addressNumber}" placeholder="Nº"/>
+		        	<input type="text" id="street_number" name="placeToRental.addressNumber" value="${placeToRental.addressNumber}" placeholder="${t['text.numero']}"/>
 		        </div>
 		        <div class="rs-7colunas">
 		        	<input type="text" id="zipcode-neighborhood" name="placeToRental.neighborhood" value="${placeToRental.neighborhood}" placeholder="Bairro"/>
 		        </div>
+		        <div class="rs-7colunas">
+		        	<input type="text" id="administrative_area_level_1" name="placeToRental.state" value="${placeToRental.neighborhood}" placeholder="Estado"/>
+		        </div>
+		        <div class="rs-7colunas">
+		        	<input type="text" id="locality" name="placeToRental.city" value="${placeToRental.neighborhood}" placeholder="Cidade"/>
+		        </div>
+				<input class="field" id="country"></input>		        
 		
+				<!-- 
 		        <div class="rs-4colunas primeira">
 		          <select id="zipcode-state" name="placeToRental.city.stateAbbreviation">
 			        <option value="0">Selecione estado</option>
@@ -132,6 +147,7 @@
 		          	</c:forEach>
 		          </select>
 		        </div>
+		         -->
 		
 		        <span class="divisao"></span>
 		        <div class="legenda rs-12colunas">${t['placetorental.legend.about.local']}</div>
