@@ -107,7 +107,7 @@
 		        <div class="legenda rs-12colunas">${t['placetorental.legend.location']}</div>
 		        
         	    <div id="locationField">
-			      <input id="autocomplete" placeholder="${t['placetorental.address.placeholder.text']}" onFocus="geolocate()" type="text"></input>
+			      <input id="autocomplete" name="placeToRental.completeGoogleAddress" placeholder="${t['placetorental.address.placeholder.text']}" onFocus="geolocate()" type="text"></input>
 			    </div>		        
 		        <div class="rs-7colunas">
 		        	<input type="hidden" id="route" name="placeToRental.address" value="${placeToRental.address}" placeholder="${t['placetorental.input.address']}"/>
@@ -128,26 +128,6 @@
 		        	<input type="text" id="locality" name="placeToRental.city" value="${placeToRental.neighborhood}" placeholder="Cidade"/>
 		        </div>
 				<input class="field" id="country"></input>		        
-		
-				<!-- 
-		        <div class="rs-4colunas primeira">
-		          <select id="zipcode-state" name="placeToRental.city.stateAbbreviation">
-			        <option value="0">Selecione estado</option>
-		          	<c:forEach items="${states}" var="state">
-			            <option value="${state.abbreviation}" <c:if test="${placeToRental.city.stateAbbreviation == state.abbreviation}">selected="selected"</c:if> >${state.abbreviation}</option>
-		          	</c:forEach>
-		          </select>
-		        </div>
-		        <div class="rs-8colunas ultima">
-		         ${placeToRental.city.name}
-		          <select id="zipcode-city" name="placeToRental.city.id">
-			        <option value="0">Selecione cidade</option>
-		          	<c:forEach items="${cities}" var="city">
-			            <option value="${city.id}" <c:if test="${placeToRental.city.id == city.id}">selected="selected"</c:if> >${city.name}</option>
-		          	</c:forEach>
-		          </select>
-		        </div>
-		         -->
 		
 		        <span class="divisao"></span>
 		        <div class="legenda rs-12colunas">${t['placetorental.legend.about.local']}</div>
@@ -289,7 +269,7 @@
 	        <span class="divisao"></span>
 	
 	        <div class="rs-6colunas primeira legenda rs-2linhas">
-	          ${t['placetorental.privacy.politic']}
+	          ${t['placetorental.privacy.policy']}
 	        </div>
 	        <div class="rs-6colunas ultima">
 	          <input type="submit" class="rs-botao laranja full" value="Finalizar Cadastro"></input>

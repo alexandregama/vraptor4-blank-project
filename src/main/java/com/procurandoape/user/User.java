@@ -102,6 +102,9 @@ public class User implements Serializable {
 	@ValidPlaceType
 	private PlaceType placeType;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar createdAt;
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName="

@@ -10,13 +10,12 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 
-import com.google.common.base.Optional;
 import com.procurandoape.home.Cities;
 import com.procurandoape.home.State;
 import com.procurandoape.interceptor.BlockUnloggedUser;
 import com.procurandoape.login.UserSession;
 import com.procurandoape.room.PlaceToRental;
-import com.procurandoape.user.City;
+import com.procurandoape.room.PlacesToRental;
 import com.procurandoape.user.User;
 import com.procurandoape.user.Users;
 
@@ -33,14 +32,17 @@ public class PlaceToRentalController {
 
 	private Validator validator;
 
+	private PlacesToRental placesToRental;
+
 	@Inject
 	public PlaceToRentalController(Result result, UserSession userSession,
-			Users users, Cities cities, Validator validator) {
+			Users users, Cities cities, Validator validator, PlacesToRental placesToRental) {
 		this.result = result;
 		this.userSession = userSession;
 		this.users = users;
 		this.cities = cities;
 		this.validator = validator;
+		this.placesToRental = placesToRental;
 	}
 
 	@Deprecated //CDI Eyes only
@@ -64,11 +66,8 @@ public class PlaceToRentalController {
 
 		if (validator.hasErrors()) {
 			result.include("placeToRental", placeToRental);
-			Optional<List<City>> citiesFromState = cities.getByStateAbbreviation(placeToRental.getCity().getStateAbbreviation());
-			if (citiesFromState.isPresent()) {
-				result.include("cities", citiesFromState.get());
-			}
 		}
+		placesToRental.save(placeToRental);
 
 		validator.onErrorRedirectTo(PlaceToRentalController.class).placeToRental();
 	}

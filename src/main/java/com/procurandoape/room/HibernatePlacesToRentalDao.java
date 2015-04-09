@@ -26,4 +26,11 @@ public class HibernatePlacesToRentalDao implements PlacesToRental {
 		return query.getResultList();
 	}
 
+	@Override
+	public void save(PlaceToRental placeToRental) {
+		manager.getTransaction().begin();
+		manager.persist(placeToRental);
+		manager.getTransaction().commit();
+	}
+
 }

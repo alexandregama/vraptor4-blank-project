@@ -6,4 +6,6 @@ public interface PlacesToRental {
 
 	List<PlaceToRental> getPlacesToRentalForHome();
 
+	void save(PlaceToRental placeToRental);
+
 }

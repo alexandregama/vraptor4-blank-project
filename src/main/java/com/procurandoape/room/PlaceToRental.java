@@ -18,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,7 +29,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.procurandoape.converters.BooleanToStringConverterJPA;
 import com.procurandoape.converters.GenderEnumToGenderJPAConverter;
-import com.procurandoape.user.City;
 import com.procurandoape.user.Gender;
 import com.procurandoape.user.GenderOrientation;
 import com.procurandoape.user.Occupation;
@@ -83,21 +81,23 @@ public class PlaceToRental implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Calendar availableDate;
 
-	@OneToOne
-	@JoinColumn(name = "city_id")
-	private City city;
-
-	@Column(name = "zipcode", length = 8)
+	@Column(name = "zipcode", length = 9)
 	private String zipcode;
 
 	@Column(name = "address", length = 100)
 	private String address;
+
+	@Column(name = "complete_google_address", length = 250)
+	private String completeGoogleAddress;
 
 	@Column(name = "neighborhood", length = 100)
 	private String neighborhood;
 
 	@Column(name = "address_number", length = 10)
 	private String addressNumber;
+
+	@Column(name = "state", length = 50)
+	private String state;
 
 	@Column(name = "main_picture")
 	private String mainPicture;
@@ -173,6 +173,9 @@ public class PlaceToRental implements Serializable {
 	@NotNull(message = "{placetorental.user.occupation.notempty}")
 	private Occupation userOccupation;
 
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar createdAt = Calendar.getInstance();
+
 	@Override
 	public String toString() {
 		return "PlaceToRental [id=" + id + ", shortDescription="
@@ -180,10 +183,11 @@ public class PlaceToRental implements Serializable {
 				+ ", price=" + price + ", priceExpenses=" + priceExpenses
 				+ ", availablePlacesAmount=" + availablePlacesAmount
 				+ ", roomTypeAmount=" + roomTypeAmount + ", minimumStay="
-				+ minimumStay + ", priceType=" + priceType + ", availableDate="
-				+ availableDate + ", city=" + city + ", zipcode=" + zipcode
-				+ ", address=" + address + ", neighborhood=" + neighborhood
-				+ ", addressNumber=" + addressNumber + ", mainPicture="
+				+ minimumStay + ", priceType=" + priceType
+				+ ", zipcode=" + zipcode + ", address="
+				+ address + ", completeGoogleAddress=" + completeGoogleAddress
+				+ ", neighborhood=" + neighborhood + ", addressNumber="
+				+ addressNumber + ", state=" + state + ", mainPicture="
 				+ mainPicture + ", propertyType=" + propertyType
 				+ ", roomQuantity=" + roomQuantity + ", bathroomQuantity="
 				+ bathroomQuantity + ", advertiseSituation="
@@ -235,10 +239,6 @@ public class PlaceToRental implements Serializable {
 
 	public PriceType getPriceType() {
 		return priceType;
-	}
-
-	public City getCity() {
-		return city;
 	}
 
 	public String getMainPicture() {
@@ -453,10 +453,6 @@ public class PlaceToRental implements Serializable {
 		this.advertiseSituation = advertiseSituation;
 	}
 
-	public void setCity(City city) {
-		this.city = city;
-	}
-
 	public String getAddress() {
 		return address;
 	}
@@ -475,5 +471,21 @@ public class PlaceToRental implements Serializable {
 
 	public String getAvailableDateFormatted() {
 		return new SimpleDateFormat("dd/MM/yyyy").format(this.availableDate.getTime());
+	}
+
+	public String getCompleteGoogleAddress() {
+		return completeGoogleAddress;
+	}
+
+	public void setCompleteGoogleAddress(String completeGoogleAddress) {
+		this.completeGoogleAddress = completeGoogleAddress;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 }
