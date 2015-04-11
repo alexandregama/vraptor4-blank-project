@@ -501,4 +501,19 @@ public class PlaceToRental implements Serializable {
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+	public String getAvailablePlacesAmountDescription() {
+		if (this.availablePlacesAmount > 1) {
+			return this.availablePlacesAmount + " vagas disponíveis";
+		}
+		return "1 vaga disponível";
+	}
+
+	public String getRoomTypeAmountDescription() {
+		if (this.roomTypeAmount == 1) {
+			return "Individual";
+		}
+		return "Para " + this.roomTypeAmount + " pessoas";
+	}
+
 }

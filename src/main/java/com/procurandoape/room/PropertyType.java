@@ -1,5 +1,7 @@
 package com.procurandoape.room;
 
+import com.procurandoape.util.I18nMessageKey;
+
 public enum PropertyType {
 
 	APARTAMENT("placetorental.propertytype.apartament"),
@@ -15,7 +17,7 @@ public enum PropertyType {
 	}
 
 	public String getName() {
-		return name;
+		return I18nMessageKey.getKey(this.name);
 	}
 
 }

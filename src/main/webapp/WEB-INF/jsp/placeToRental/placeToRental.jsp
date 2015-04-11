@@ -145,27 +145,21 @@
 		        <div class="rs-4colunas ultima">
 		          <select name="placeToRental.roomQuantity">
 		            <option value="">Qtd. de quartos</option>
-		            <option value="1" <c:if test="${placeToRental.roomQuantity == 1}">selected="selected"</c:if> >01 quarto</option>
-		            <option value="2" <c:if test="${placeToRental.roomQuantity == 2}">selected="selected"</c:if> >02 quartos</option>
-		            <option value="3" <c:if test="${placeToRental.roomQuantity == 3}">selected="selected"</c:if> >03 quartos</option>
-		            <option value="4" <c:if test="${placeToRental.roomQuantity == 4}">selected="selected"</c:if> >04 quartos</option>
-		            <option value="5" <c:if test="${placeToRental.roomQuantity == 5}">selected="selected"</c:if> >05 quartos</option>
-		            <option value="6" <c:if test="${placeToRental.roomQuantity == 6}">selected="selected"</c:if> >06 quartos</option>
-		            <option value="7" <c:if test="${placeToRental.roomQuantity == 7}">selected="selected"</c:if> >07 quartos</option>
-		            <option value="8" <c:if test="${placeToRental.roomQuantity == 8}">selected="selected"</c:if> >08 quartos</option>
+		            <option value="1" <c:if test="${placeToRental.roomQuantity == 1}">selected="selected"</c:if> >${t['placetorental.room.quantity'].count(1)}</option>
+		            <option value="2" <c:if test="${placeToRental.roomQuantity == 2}">selected="selected"</c:if> >${t['placetorental.room.quantity'].count(2)}</option>
+		            <option value="3" <c:if test="${placeToRental.roomQuantity == 3}">selected="selected"</c:if> >${t['placetorental.room.quantity'].count(3)}</option>
+		            <option value="4" <c:if test="${placeToRental.roomQuantity == 4}">selected="selected"</c:if> >${t['placetorental.room.quantity'].count(4)}</option>
+		            <option value="5" <c:if test="${placeToRental.roomQuantity == 5}">selected="selected"</c:if> >${t['placetorental.room.quantity'].count(5)}</option>
 		          </select>
 		        </div>
 		        <div class="rs-4colunas ultima">
 		          <select name="placeToRental.bathroomQuantity">
 		            <option value="0" <c:if test="${placeToRental.bathroomQuantity == 0}">selected="selected"</c:if> >Qtd. de banheiros</option>
-		            <option value="1" <c:if test="${placeToRental.bathroomQuantity == 1}">selected="selected"</c:if> >01 banheiro</option>
-		            <option value="2" <c:if test="${placeToRental.bathroomQuantity == 2}">selected="selected"</c:if> >02 banheiros</option>
-		            <option value="3" <c:if test="${placeToRental.bathroomQuantity == 3}">selected="selected"</c:if> >03 banheiros</option>
-		            <option value="4" <c:if test="${placeToRental.bathroomQuantity == 4}">selected="selected"</c:if> >04 banheiros</option>
-		            <option value="5" <c:if test="${placeToRental.bathroomQuantity == 5}">selected="selected"</c:if> >05 banheiros</option>
-		            <option value="6" <c:if test="${placeToRental.bathroomQuantity == 6}">selected="selected"</c:if> >06 banheiros</option>
-		            <option value="7" <c:if test="${placeToRental.bathroomQuantity == 7}">selected="selected"</c:if> >07 banheiros</option>
-		            <option value="8" <c:if test="${placeToRental.bathroomQuantity == 8}">selected="selected"</c:if> >08 banheiros</option>
+		            <option value="1" <c:if test="${placeToRental.bathroomQuantity == 1}">selected="selected"</c:if> >${t['placetorental.bathroom.quantity'].count(1)}</option>
+		            <option value="2" <c:if test="${placeToRental.bathroomQuantity == 2}">selected="selected"</c:if> >${t['placetorental.bathroom.quantity'].count(2)}</option>
+		            <option value="3" <c:if test="${placeToRental.bathroomQuantity == 3}">selected="selected"</c:if> >${t['placetorental.bathroom.quantity'].count(3)}</option>
+		            <option value="4" <c:if test="${placeToRental.bathroomQuantity == 4}">selected="selected"</c:if> >${t['placetorental.bathroom.quantity'].count(4)}</option>
+		            <option value="5" <c:if test="${placeToRental.bathroomQuantity == 5}">selected="selected"</c:if> >${t['placetorental.bathroom.quantity'].count(5)}</option>
 		          </select>
 		        </div>
 		

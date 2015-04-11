@@ -45,7 +45,7 @@
         <div class="incluso icones icon-checkmark">Incluso água, luz e internet</div>
         <span class="divisao"></span>
         <h3>Descrição do anúncio:</h3>
-        <p>Apartamento bem arejado, a 2 minutos da Av. Nove de Julho e a 10min da Av. Paulista. Ótima localização, com shoppings, farmácias, padaria próximas.</p>
+        <p>${placeToRental.description}</p>
 
         <span class="divisao"></span>
 
@@ -62,15 +62,15 @@
         <span class="divisao"></span> 
 
         <ul class="rs-6colunas primeira">
-          <li class="icones icon-checkmark"><strong>1 vaga disponível</strong></li>
-          <li class="icones icon-checkmark"><strong>Vaga/quarto:</strong> Individual</li>
-          <li class="icones icon-checkmark"><strong>Disponível em:</strong> 13/01/2015</li>
-          <li class="icones icon-checkmark"><strong>Estadia:</strong> 1 ano ou +</li>
+          <li class="icones icon-checkmark"><strong>${placeToRental.availablePlacesAmountDescription}</strong></li>
+          <li class="icones icon-checkmark"><strong>Vaga/quarto:</strong> ${placeToRental.roomTypeAmountDescription}</li>
+          <li class="icones icon-checkmark"><strong>Disponível em:</strong> ${placeToRenta.availableDateFormatted}</li>
+          <li class="icones icon-checkmark"><strong>Estadia:</strong> ${t['placetorental.option.month'].count(placeToRental.minimumStay)}</li>
         </ul>
         <ul class="rs-6colunas ultima">
-          <li class="icones icon-checkmark"><strong>Tipo do imóvel:</strong> apartamento</li>
-          <li class="icones icon-checkmark"><strong>2 quartos</strong></li>
-          <li class="icones icon-checkmark"><strong>1 banheiro</strong></li>
+          <li class="icones icon-checkmark"><strong>Tipo do imóvel:</strong> ${placeToRental.propertyType.name}</li>
+          <li class="icones icon-checkmark"><strong>${t['placetorental.room.quantity'].count(placeToRental.roomQuantity)}</strong></li>
+          <li class="icones icon-checkmark"><strong>${t['placetorental.bathroom.quantity'].count(placeToRental.bathroomQuantity)}</strong></li>
         </ul>        
 
         <span class="divisao"></span>
@@ -81,7 +81,7 @@
           </div>
           <div class="rs-10colunas ultima">
             Conheça o dono deste anúncio:
-            <h3>Ronery Souza - 32</h3>
+            <h3>${placeToRental.user.fullName} - ${placeToRental.user.age}</h3>
             Trabalhador
           </div>
         </a>
