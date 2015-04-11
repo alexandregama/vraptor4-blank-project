@@ -6,6 +6,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.google.common.base.Optional;
+
 public class HibernatePlacesToRentalDao implements PlacesToRental {
 
 	private EntityManager manager;
@@ -31,6 +33,11 @@ public class HibernatePlacesToRentalDao implements PlacesToRental {
 		manager.getTransaction().begin();
 		manager.persist(placeToRental);
 		manager.getTransaction().commit();
+	}
+
+	@Override
+	public Optional<PlaceToRental> findBy(Long id) {
+		return Optional.fromNullable(this.manager.find(PlaceToRental.class, id));
 	}
 
 }
