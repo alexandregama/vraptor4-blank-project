@@ -74,8 +74,13 @@ public class HibernateUsersDao implements Users {
 	}
 
 	@Override
-	public User findById(User user) {
+	public User findByUser(User user) {
 		return manager.find(User.class, user.getId());
+	}
+
+	@Override
+	public Optional<User> findById(Long id) {
+		return Optional.fromNullable(manager.find(User.class, id));
 	}
 
 }

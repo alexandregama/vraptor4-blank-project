@@ -27,7 +27,7 @@ public class AdvertiseController {
 	AdvertiseController() {
 	}
 
-	@Get("/advertise/{id}")
+	@Get("/anuncio/{id}")
 	public void advertise(Long id) {
 		Optional<PlaceToRental> placeToRentalOptional = placesToRental.findBy(id);
 		if (placeToRentalOptional.isPresent()) {

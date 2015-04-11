@@ -17,6 +17,8 @@ public interface Users {
 
 	void updatePassword(User user, Password password);
 
-	User findById(User user);
+	User findByUser(User user);
+
+	Optional<User> findById(Long id);
 
 }

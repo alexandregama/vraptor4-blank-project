@@ -5,7 +5,7 @@
   <header class="claro clearfix">
     <div class="container colunas">
       <div class="rs-3colunas primeira">
-        <a href="#" class="sprite logo"></a>   
+        <a href="${linkTo[HomeController].index}" class="sprite logo"></a>   
         <span id="menu-mobile" class="icon-cross icon-menu sm"></span>     
       </div>
       <div class="rs-9colunas ultima">
@@ -20,8 +20,8 @@
 		                <span>${userSession.user.firstName}</span>
 		              </a>              
 		              <ul class="submenu-profile">
-		                <li class="sm"><a href="/login">Meus Alertas (3)</a></li>
-		                <li class="sm"><a href="/login">Minhas Mensagens (1)</a></li>
+		                <li class="sm"><a href="${linkTo[UserController].signup}">Meus Alertas (3)</a></li>
+		                <li class="sm"><a href="${linkTo[UserController].signup}">Minhas Mensagens (1)</a></li>
 		                <li><a href="meu-painel">Painel de Controle</a></li>
 		                <li><a href="meus-anuncios">Meus Anúncios</a></li>
 		                <li><a href="logout">Sair</a></li>
@@ -33,7 +33,7 @@
 	      	<c:otherwise>
 		        <ul class="menu">
 		          <li><a href="${linkTo[LoginController].login}">Fazer Login</a></li>
-		          <li><a href="criar-perfil" class="rs-botao azul-claro medio">Anuncie Grátis</a></li>
+		          <li><a href="${linkTo[UserController].signup}" class="rs-botao azul-claro medio">Anuncie Grátis</a></li>
 		        </ul>
 	      	</c:otherwise>
       	</c:choose>

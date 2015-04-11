@@ -42,15 +42,25 @@ public class UserController {
 	UserController() {
 	}
 
-	@Get("/signup")
-	public void user() {
+	@Get("/usuario/cadastro")
+	public void signup() {
 		result.include("states", cities.getAllStates());
 	}
 
-	@Get("/perfil")
+	@Get("/usuario/perfil")
 	public void perfil() {
-		User user = users.findById(userSession.getUser());
+		User user = users.findByUser(userSession.getUser());
 		result.include("user", user);
+	}
+
+	@Get("/perfil/{id}")
+	public void perfil(Long id) {
+		Optional<User> userOptional = users.findById(id);
+		if (userOptional.isPresent()) {
+			result.include("user", userOptional.get());
+		} else {
+			result.redirectTo(HomeController.class).index();
+		}
 	}
 
 	@Post("/user")
@@ -68,7 +78,7 @@ public class UserController {
 			}
 			result.include("user", user);
 		}
-		validator.onErrorRedirectTo(UserController.class).user();
+		validator.onErrorRedirectTo(UserController.class).signup();
 
 		users.save(user);
 		userSession.add(user);

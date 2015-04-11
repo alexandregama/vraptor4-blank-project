@@ -24,8 +24,8 @@
       <span class="imagem-feature" style="background-image:url(images/procurando-ape-02.jpg)"></span>
       <h1>Encontre pessoas para dividir apartamento, quarto, casa</h1>
       <div class="rs-botoes">
-        <a href="" class="rs-botao laranja grande">Tenho um espaço</a>
-        <a href="" class="rs-botao azul grande">Preciso de um espaço</a>
+        <a href="${linkTo[UserController].signup}" class="rs-botao laranja grande">Tenho um espaço</a>
+        <a href="${linkTo[UserController].signup}" class="rs-botao azul grande">Preciso de um espaço</a>
       </div>
     </div>
     <!-- Fim Feature -->
@@ -61,16 +61,16 @@ Você também pode fazer a busca do seu jeito.</p>
 	      <c:forEach items="${placesToRental}" var="place">
 	        <div class="rs-4colunas anuncio">         
 	          <figure>
-	            <a href="/anuncio/xxxx/id">
+	            <a href="${linkTo[AdvertiseController].advertise(place.id)}">
 	              <img src="${place.mainPicture}" alt="${place.shortDescription}">
 	              <span class="bg-alpha valor">
 	                R$<strong>${place.formattedPriceWithoutSymbol}</strong>
 	                <span>por mês</span>
 	              </span>
 	            </a>
-	            <a href="/perfil/ronerysouza" class="perfil-anuncio"><img src="${place.user.photo}" alt="${place.user.fullName}"></a>
+	            <a href="${linkTo[UserController].perfil(place.user.id)}" class="perfil-anuncio"><img src="${place.user.photo}" alt="${place.user.fullName}"></a>
 	          </figure>
-	          <a href="/anuncio/xxxx/id">
+	          <a href="${linkTo[AdvertiseController].advertise(place.id)}">
 	            <h3>${place.shortDescription}</h3>
 	            <p>${place.city} - ${place.state}</p>
 	          </a>
@@ -87,7 +87,7 @@ Você também pode fazer a busca do seu jeito.</p>
       
       <c:forEach items="${usersForHome}" var="user">
 	      <div class="rs-3colunas">
-	        <a href="/perfil/xxx">
+	        <a href="${linkTo[UserController].perfil(user.id)}">
 	          <img src="${user.photo}" alt="${user.firstName}">
 	          <h4>${user.fullName}</h4>
 	          <p>

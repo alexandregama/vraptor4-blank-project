@@ -53,7 +53,7 @@ public class PlaceToRentalController {
 	@Get("/place-to-rental")
 	public void placeToRental() {
 		User loggedUser = userSession.getUser();
-		result.include("user", users.findById(loggedUser));
+		result.include("user", users.findByUser(loggedUser));
 
 		List<State> states = cities.getAllStates();
 		result.include("states", states);
