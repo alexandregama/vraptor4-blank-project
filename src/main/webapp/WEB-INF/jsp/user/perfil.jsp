@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Ronery está procurando um apê na Bela Vista, São Paulo - SP</title>
+	<title>${user.firstName} está procurando um apê em bairro, ${user.city.name} - ${user.city.stateAbbreviation}</title>
 	<link rel="stylesheet" href="${urlAmazonPresenter.s3AssetsUrl}/site-html/css/main.css" />
   <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
 </head>
@@ -27,8 +27,8 @@
           <span class="icon-heart"></span>
         </figure>
         <h2>${user.fullName} - ${user.age}</h2>
-        <p>Buscando uma vaga em: <br> <strong>Bela Vista, São Paulo - SP</strong></p>
-        <a href="tel:+11964551258">(11) 96455-1258</a>
+        <p>Buscando uma vaga em: <br> <strong>Bairro, ${user.city.name} - ${user.city.stateAbbreviation}</strong></p>
+        <a href="tel:+${user.formattedPhoneWithoutParenteses}">${user.formattedPhone}</a>
         <div class="rs-botao full azul-claro icon-mail3">Enviar Mensagem</div>
         <span id="verPerfilCompleto" class="detalhes">Perfil completo</span>
       </div>      
@@ -40,14 +40,14 @@
         <!-- Se o usuário tem um espaço exlua este bloco até o próximo comentário -->
         <div class="rs-12colunas">        
           <h1>Oi, sou ${user.firstNameWithGender}</h1>
-          <p>Estou procurando um apartamento próximo à Av. Paulista, pois trabalho nesta região</p>
+          <p>${user.description}</p>
           <ul>
             <li class="icon-location2"><strong>Bela Vista, São Paulo - SP</strong></li>
-            <li class="icon-checkmark"><strong>Sexo:</strong> Masculino - Orientação: Gay</li>
+            <li class="icon-checkmark"><strong>Sexo:</strong> ${user.gender.value} - Orientação: Gay</li>
             <li class="icon-checkmark"><strong>Meu orçamento:</strong> R$ 1.500,00 (Com despesas inclusas)</li>
-            <li class="icon-checkmark">Não fumo</li>
-            <li class="icon-checkmark">Não tenho animal(is)</li>
-            <li class="icon-checkmark">Não tenho criança(s)</li>
+            <li class="icon-checkmark">${user.smokerDescription}</li>
+            <li class="icon-checkmark">${user.animalDescription}</li>
+            <li class="icon-checkmark">${user.kidsDescription}</li>
           </ul>        
         </div>
 

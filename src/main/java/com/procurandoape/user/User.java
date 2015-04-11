@@ -57,6 +57,12 @@ public class User implements Serializable {
 	@NotBlank(message = "{user.email.empty}")
 	private String email;
 
+	@Column(name = "phone", length = 15)
+	private String phone;
+
+	@Column(name = "phone_ddd", length = 3)
+	private String phoneDDD;
+
 	@Column(name = "password", length = 10, nullable = false)
 	@NotBlank(message = "{user.password.empty}")
 	@Size(min = 6, max = 10, message = "{user.password.length}")
@@ -87,8 +93,20 @@ public class User implements Serializable {
 	@Column(name = "smoker", columnDefinition="char(1)")
 	private Boolean smoker;
 
-	@OneToMany(mappedBy = "user")
-	private List<PlaceToLive> placesToLive;
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	@Column(name = "has_animal", columnDefinition="char(1)")
+	private Boolean hasAnimal;
+
+	@Convert(converter = BooleanToStringConverterJPA.class)
+	@Column(name = "has_kids", columnDefinition="char(1)")
+	private Boolean hasKids;
+
+	@OneToOne
+	private PlaceToLive placeToLive;
+
+	@Column(name = "description", length = 250, nullable = false)
+	@NotBlank
+	private String description;
 
 	@OneToMany(mappedBy = "user")
 	private List<PlaceToRental> placesToRental;
@@ -145,13 +163,6 @@ public class User implements Serializable {
 
 	public void setSmoker(Boolean smoker) {
 		this.smoker = smoker;
-	}
-
-	public PlaceToLive getPlaceToLive() {
-		if (!this.placesToLive.isEmpty()) {
-			return this.placesToLive.get(0);
-		}
-		return null;
 	}
 
 	public String getEmail() {
@@ -273,4 +284,78 @@ public class User implements Serializable {
 			return "a " + this.firstName;
 		}
 	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getPhoneDDD() {
+		return phoneDDD;
+	}
+
+	public void setPhoneDDD(String phoneDDD) {
+		this.phoneDDD = phoneDDD;
+	}
+
+	public String getFormattedPhone() {
+		return "(" + this.phoneDDD + ") " + this.phone;
+	}
+
+	public String getFormattedPhoneWithoutParenteses() {
+		return this.phoneDDD + this.phone;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public PlaceToLive getPlaceToLive() {
+		return placeToLive;
+	}
+
+	public String getSmokerDescription() {
+		if (smoker != null && smoker) {
+			return "Sou fumante";
+		}
+		return "Não fumo";
+	}
+
+	public String getAnimalDescription() {
+		if (hasAnimal != null && hasAnimal) {
+			return "Tenho animal";
+		}
+		return "Não tenho animal(is)";
+	}
+
+	public String getKidsDescription() {
+		if (hasKids != null && hasKids) {
+			return "Tenho crianças";
+		}
+		return "Não tenho criança(s)";
+	}
+
+	public Boolean getHasAnimal() {
+		return hasAnimal;
+	}
+
+	public void setHasAnimal(Boolean hasAnimal) {
+		this.hasAnimal = hasAnimal;
+	}
+
+	public Boolean getHasKids() {
+		return hasKids;
+	}
+
+	public void setHasKids(Boolean hasKids) {
+		this.hasKids = hasKids;
+	}
+
 }

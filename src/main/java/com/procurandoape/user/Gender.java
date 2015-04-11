@@ -1,5 +1,7 @@
 package com.procurandoape.user;
 
+import com.procurandoape.util.I18nMessageKey;
+
 public enum Gender {
 
 	MALE("user.gender.male"),
@@ -13,7 +15,7 @@ public enum Gender {
 	}
 
 	public String getValue() {
-		return value;
+		return I18nMessageKey.getKey(this.value);
 	}
 
 }
