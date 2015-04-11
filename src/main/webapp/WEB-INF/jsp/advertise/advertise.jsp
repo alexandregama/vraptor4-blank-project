@@ -82,7 +82,7 @@
           <div class="rs-10colunas ultima">
             Conheça o dono deste anúncio:
             <h3>${placeToRental.user.fullName} - ${placeToRental.user.age}</h3>
-            Trabalhador
+            ${placeToRental.userOccupation.name}
           </div>
         </a>
 

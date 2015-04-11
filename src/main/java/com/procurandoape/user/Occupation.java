@@ -1,5 +1,7 @@
 package com.procurandoape.user;
 
+import com.procurandoape.util.I18nMessageKey;
+
 public enum Occupation {
 
 	WORKER("placetorental.occupation.worker"),
@@ -14,7 +16,7 @@ public enum Occupation {
 	}
 
 	public String getName() {
-		return name;
+		return I18nMessageKey.getKey(this.name);
 	}
 
 }
