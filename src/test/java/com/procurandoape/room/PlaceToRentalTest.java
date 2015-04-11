@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 import org.junit.Test;
 
-public class RoomTest {
+public class PlaceToRentalTest {
 
 	@Test
 	public void shouldFormatThePriceToBrazilWhenPriceIsHundred() throws Exception {
@@ -30,6 +30,22 @@ public class RoomTest {
 		room.setPrice(new BigDecimal("10500"));
 
 		assertEquals("R$ 10.500,00", room.getFormattedPrice());
+	}
+
+	@Test
+	public void shouldRemovePriceSymbolFromFormattedPrice() throws Exception {
+		PlaceToRental placeToRental = new PlaceToRental();
+		placeToRental.setPrice(new BigDecimal("1250"));
+
+		assertEquals("1.250,00", placeToRental.getFormattedPriceWithoutSymbol());
+	}
+
+	@Test
+	public void shouldRemovePriceSymbolFromFormattedPriceWhenPriceIsMoreThanTenThousand() throws Exception {
+		PlaceToRental placeToRental = new PlaceToRental();
+		placeToRental.setPrice(new BigDecimal("10500"));
+
+		assertEquals("10.500,00", placeToRental.getFormattedPriceWithoutSymbol());
 	}
 
 }

@@ -24,7 +24,7 @@
 
     <section id="anuncio" class="container clearfix">
       <h1>${placeToRental.shortDescription}</h1>
-      <address class="icones icon-location2">Rua Rocha, Bela Vista , São Paulo - SP</address>
+      <address class="icones icon-location2">${placeToRental.address}, ${placeToRental.neighborhood}, ${placeToRental.city} - ${placeToRental.state}</address>
       <span class="divisao"></span>
       <div id="album" class="rs-6colunas primeira">
         <div class="album">
@@ -41,7 +41,7 @@
       </div>
 
       <div class="infos-anuncio rs-6colunas ultima">        
-        <div class="valor"><span class="central">R$<strong>1.300,00</strong><span>por mês</span></span></div>
+        <div class="valor"><span class="central">R$<strong>${placeToRental.formattedPriceWithoutSymbol}</strong><span>por mês</span></span></div>
         <div class="incluso icones icon-checkmark">Incluso água, luz e internet</div>
         <span class="divisao"></span>
         <h3>Descrição do anúncio:</h3>

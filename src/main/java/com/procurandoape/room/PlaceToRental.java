@@ -221,7 +221,9 @@ public class PlaceToRental implements Serializable {
 
 	public String getFormattedPriceWithoutSymbol() {
 		NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-		return formatter.format(price).replaceAll("R$", "");
+		String formattedPrice = formatter.format(price);
+		formattedPrice = formattedPrice.replaceAll("R\\$ ", "");
+		return formattedPrice;
 	}
 
 	public Long getId() {
