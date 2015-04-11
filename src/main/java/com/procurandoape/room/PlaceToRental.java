@@ -99,6 +99,9 @@ public class PlaceToRental implements Serializable {
 	@Column(name = "state", length = 50)
 	private String state;
 
+	@Column(name = "city", length = 100)
+	private String city;
+
 	@Column(name = "main_picture")
 	private String mainPicture;
 
@@ -487,5 +490,13 @@ public class PlaceToRental implements Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

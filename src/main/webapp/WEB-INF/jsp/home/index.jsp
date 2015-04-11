@@ -72,7 +72,7 @@ Você também pode fazer a busca do seu jeito.</p>
 	          </figure>
 	          <a href="/anuncio/xxxx/id">
 	            <h3>${place.shortDescription}</h3>
-	            <p>${place.city.district}, ${place.city.name} - ${place.city.stateAbbreviation}</p>
+	            <p>${place.city} - ${place.state}</p>
 	          </a>
 	        </div>
 	      </c:forEach>
