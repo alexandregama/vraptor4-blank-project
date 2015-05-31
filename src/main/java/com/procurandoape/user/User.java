@@ -1,12 +1,16 @@
 package com.procurandoape.user;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -122,6 +126,12 @@ public class User implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar createdAt;
+
+	@Column(name = "budget_estimate")
+	private BigDecimal budgetEstimate;
+
+	@Embedded
+	private HousingPreferences housingPreferences;
 
 	@Override
 	public String toString() {
@@ -358,4 +368,27 @@ public class User implements Serializable {
 		this.hasKids = hasKids;
 	}
 
+	public BigDecimal getBudgetEstimate() {
+		return budgetEstimate;
+	}
+
+	public void setBudgetEstimate(BigDecimal budgetEstimate) {
+		this.budgetEstimate = budgetEstimate;
+	}
+
+	public String getBudgetEstimateFormatted() {
+		if (this.budgetEstimate != null) {
+			NumberFormat formatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+			return formatter.format(this.budgetEstimate).replaceAll("R\\$", "");
+		}
+		return "";
+	}
+
+	public HousingPreferences getHousingPreferences() {
+		return housingPreferences;
+	}
+
+	public void setHousingPreferences(HousingPreferences housingPreferences) {
+		this.housingPreferences = housingPreferences;
+	}
 }

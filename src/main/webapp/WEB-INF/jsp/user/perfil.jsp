@@ -44,7 +44,7 @@
           <ul>
             <li class="icon-location2"><strong>Bela Vista, São Paulo - SP</strong></li>
             <li class="icon-checkmark"><strong>Sexo:</strong> ${user.gender.value} - Orientação: Gay</li>
-            <li class="icon-checkmark"><strong>Meu orçamento:</strong> R$ 1.500,00 (Com despesas inclusas)</li>
+            <li class="icon-checkmark"><strong>Meu orçamento:</strong> R$ ${user.budgetEstimateFormatted} (Com despesas inclusas)</li>
             <li class="icon-checkmark">${user.smokerDescription}</li>
             <li class="icon-checkmark">${user.animalDescription}</li>
             <li class="icon-checkmark">${user.kidsDescription}</li>
@@ -88,7 +88,7 @@
           <h3>Preferências de Moradia</h3>
           <ul>
             <li class="icon-location2">
-              <strong>São Paulo - SP</strong>
+              <strong>${user.housingPreferences.cityPreference.name} - SP</strong>
             </li>
             <li class="icon-location2">
               <strong>Bairros: </strong>Bela Vista, Vila Mariana, Vila Madalena
